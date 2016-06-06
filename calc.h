@@ -2,9 +2,6 @@
 #define CALC_H
 
 #include "include.h"
-#include "structure.h"
-#include "pile.h"
-#include "auxiliaire.h"
 
 class QCalc : public QWidget{
 Q_OBJECT

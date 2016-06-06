@@ -1,6 +1,8 @@
 #ifndef AUXILIAIRE_H
 #define AUXILIAIRE_H
 
+#include "include.h"
+
 /* This file contains auxiliary objects such as Exception Manager.*/
 
 //
