@@ -3,14 +3,13 @@ QT += widgets
 
 HEADERS += \
     include.h \
-    structure.h \
     pile.h \
     auxiliaire.h \
     calc.h \
     entier.h \
     litteraleCalculable.h \
     item.h \
-    litterale.h
+    litteralemanager.h
 
 SOURCES += \
     structure.cpp \

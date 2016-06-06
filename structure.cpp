@@ -1,5 +1,5 @@
-#include "structure.h"
-#include "auxiliaire.h"
+#include "entier.h"
+#include "litteralemanager.h"
 
 /**Definition of Item's method**/
 Litterale& Item::getLitterale() const {

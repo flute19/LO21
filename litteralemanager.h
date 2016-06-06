@@ -5,10 +5,8 @@
 #include "include.h"
 #include "litteraleCalculable.h"
 #include "pile.h"
-#include "structure.h"
 #include "calc.h"
 #include "entier.h"
-#include "litteralemanager.h"
 #include "auxiliaire.h"
 
 class Litterale{
@@ -93,5 +91,13 @@ public:
     const_iterator end() const { return const_iterator(exps+nb); }
 };
 
+class Controleur {
+    LitteraleManager& expMng;
+    Pile& expAff;
+public:
+    Controleur(LitteraleManager& m, Pile& v):expMng(m), expAff(v){}
+    void commande(const QString& c);
+
+};
 
 #endif // LITTERALEMANAGER_H

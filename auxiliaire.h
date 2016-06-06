@@ -2,14 +2,7 @@
 #define AUXILIAIRE_H
 
 #include "include.h"
-#include "item.h"
-//#include "litterale.h"
-#include "litteraleCalculable.h"
-#include "pile.h"
-#include "structure.h"
-#include "calc.h"
-#include "entier.h"
-#include "litteralemanager.h"
+
 /* This file contains auxiliary objects such as Exception Manager.*/
 
 //
@@ -21,11 +14,4 @@ public:
 };
 #endif // AUXILIAIRE_H
 
-class Controleur {
-    LitteraleManager& expMng;
-    Pile& expAff;
-public:
-    Controleur(LitteraleManager& m, Pile& v):expMng(m), expAff(v){}
-    void commande(const QString& c);
 
-};
