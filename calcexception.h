@@ -1,0 +1,4 @@
+#ifndef CALCEXCEPTION_H
+#define CALCEXCEPTION_H
+
+#endif // CALCEXCEPTION_H
