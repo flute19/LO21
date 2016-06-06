@@ -1,7 +1,7 @@
 #ifndef ENTIER_H
 #define ENTIER_H
 
-
+#include "include.h"
 
 class Entier //public LitteraleCalculable
 {
