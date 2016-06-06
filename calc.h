@@ -2,6 +2,10 @@
 #define CALC_H
 
 #include "include.h"
+#include "pile.h"
+
+class Pile;
+class Controleur;
 
 class QCalc : public QWidget{
 Q_OBJECT
@@ -13,7 +17,7 @@ Pile* pile;
 Controleur* controleur;
 
 public:
-explicit QComputer(QWidget *parent = 0);
+explicit QCalc(QWidget *parent = 0);
 public slots:
 void refresh();
 void getNextCommande();

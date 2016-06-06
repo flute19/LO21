@@ -4,9 +4,11 @@
 #include "include.h"
 #include "litteralemanager.h"
 
+class Litterale;
+
 //superclass of object on stack (interface with stack).
 class Item {
-    Litterale exp;
+    Litterale* exp;
 public:
     //management
     Item():exp(nullptr){}

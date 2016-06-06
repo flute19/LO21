@@ -13,7 +13,7 @@ class Litterale{
 public:
     void affiche();
     Litterale(){}
-    virtual ~Litterale();
+    virtual ~Litterale()=0;
 };
 
 class LitteraleManager {
