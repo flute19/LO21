@@ -20,13 +20,8 @@
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QDebug>
-#include "item.h"
-#include "litterale.h"
-#include "litteraleCalculable.h"
-#include "pile.h"
-#include "structure.h"
-#include "calc.h"
-#include "entier.h"
+
+
 
 using namespace std;
 

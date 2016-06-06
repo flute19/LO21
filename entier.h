@@ -2,6 +2,14 @@
 #define ENTIER_H
 
 #include "include.h"
+#include "item.h"
+//#include "litterale.h"
+#include "litteraleCalculable.h"
+#include "pile.h"
+#include "structure.h"
+#include "calc.h"
+#include "entier.h"
+#include "litteralemanager.h"
 
 class Entier //public LitteraleCalculable
 {

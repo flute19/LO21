@@ -1,7 +1,22 @@
 #ifndef LITTERALEMANAGER_H
 #define LITTERALEMANAGER_H
 
+//#include "litterale.h"
+#include "include.h"
+#include "litteraleCalculable.h"
+#include "pile.h"
 #include "structure.h"
+#include "calc.h"
+#include "entier.h"
+#include "litteralemanager.h"
+#include "auxiliaire.h"
+
+class Litterale{
+public:
+    void affiche();
+    Litterale(){}
+    virtual ~Litterale();
+};
 
 class LitteraleManager {
     Litterale** exps;

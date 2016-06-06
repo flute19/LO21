@@ -2,7 +2,14 @@
 #define ITEM_H
 
 #include "include.h"
-#include "litterale.h"
+//#include "litterale.h"
+#include "litteraleCalculable.h"
+#include "pile.h"
+#include "structure.h"
+#include "calc.h"
+#include "entier.h"
+#include "litteralemanager.h"
+
 //superclass of object on stack (interface with stack).
 class Item {
     Litterale* exp;
