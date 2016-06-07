@@ -5,9 +5,10 @@
 #include "litteralemanager.h"
 
 //superclass of Litteral object you can use in arithmetic.
+template <class T>
 class LitteraleCalculable: public Litterale{
 public:
-    virtual LitteraleCalculable& operator+ (LitteraleCalculable & l) =0;
+    virtual T& operator+ (T& l) =0;
 };
 
 

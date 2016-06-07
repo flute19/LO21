@@ -1,9 +1,10 @@
 #include "structure.h"
 #include "include.h"
+#include "calc.h"
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
-    QComputer fenetre;
+    QCalc fenetre;
 
     fenetre.show();
     fenetre.setWindowTitle(QApplication::translate("toplevel", "Accueil widget"));
@@ -12,6 +13,6 @@ int main(int argc, char* argv[]){
     Entier c2(3);
     Entier res = c1+c2;
 
-    res.Affiche();
+    //res.affiche();
 return app.exec();
 }

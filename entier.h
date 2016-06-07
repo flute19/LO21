@@ -5,7 +5,7 @@
 #include "litteraleCalculable.h"
 
 
-class Entier:public LitteraleCalculable
+class Entier:public LitteraleCalculable<Entier>
 {
 int value;
 public:
@@ -14,7 +14,7 @@ public:
     int getValue()const{return value;}
 
     //object capacity
-    Entier& operator + (LitteraleCalculable& e);
+    Entier& operator + (Entier& e);
 
 };
 

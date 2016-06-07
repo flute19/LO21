@@ -9,6 +9,9 @@
 #include "entier.h"
 #include "auxiliaire.h"
 
+//------- pre-forward------
+class Pile;
+
 class Litterale{
 public:
     void affiche();
