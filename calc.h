@@ -2,6 +2,8 @@
 #define CALC_H
 
 #include "include.h"
+#include "pile.h"
+#include "litteralemanager.h"
 
 class QCalc : public QWidget{
 Q_OBJECT
