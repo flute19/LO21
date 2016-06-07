@@ -10,11 +10,11 @@ class Entier:public LitteraleCalculable
 int value;
 public:
     //object management
-    Entier(int x):value(x){}
+    Entier(int x=0):value(x){}
     int getValue()const{return value;}
 
     //object capacity
-    Entier& operator + (const Entier& e);
+    Entier& operator + (LitteraleCalculable& e);
 
 };
 

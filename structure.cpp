@@ -9,8 +9,8 @@ Litterale& Item::getLitterale() const {
 
 
 /**Definition of Entier's method**/
-Entier& Entier::operator+ (const Entier& e){
-            Entier res(e.value+value);
+Entier& Entier::operator+ (LitteraleCalculable& e){
+                Entier res(e.value+value);
             return res;
 }
 
