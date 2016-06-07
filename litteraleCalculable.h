@@ -1,4 +1,4 @@
-#ifndef LITTERALECALCULABLE_H
+    #ifndef LITTERALECALCULABLE_H
 #define LITTERALECALCULABLE_H
 
 #include "include.h"

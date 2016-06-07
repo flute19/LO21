@@ -14,7 +14,7 @@ public:
     int getValue()const{return value;}
 
     //object capacity
-    Entier& operator + (const Entier& e);
+    Entier& operator + (Entier& e);
 
 };
 
