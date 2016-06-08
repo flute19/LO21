@@ -9,16 +9,45 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 {
     pile=new Pile();
 
+    //-------- Object instanciation -------------
     message= new QLineEdit(this) ;
     vuePile= new QTableWidget(pile->getNbItemsToAffiche(),1,this);
     commande= new QLineEdit(this);
-    QVBoxLayout* couche= new QVBoxLayout;
+    couche= new QVBoxLayout;
+
+    //---- Digits -------
+    un = new QPushButton("1",this);
+    deux = new QPushButton("2",this);
+    trois = new QPushButton("3",this);
+    quatre = new QPushButton("4",this);
+    cinq = new QPushButton("5",this);
+    six = new QPushButton("6",this);
+    sept = new QPushButton("7",this);
+    huit = new QPushButton("8",this);
+    neuf = new QPushButton("9",this);
+
+    grille = new QGridLayout(this);
+
+
+    //--------- Object Display -------------------
+
+    grille->addWidget(un,2,0);
+    grille->addWidget(deux,2,1);
+    grille->addWidget(trois,2,2);
+
+    grille->addWidget(quatre,1,0);
+    grille->addWidget(cinq,1,1);
+    grille->addWidget(six,1,2);
+
+    grille->addWidget(sept,2,0);
+    grille->addWidget(huit,2,1);
+    grille->addWidget(neuf,2,2);
 
     couche->addWidget(message);
     couche->addWidget(vuePile);
     couche->addWidget(commande);
-    setLayout(couche)
-    ;
+    couche->addLayout(grille);
+    setLayout(couche);
 
     pile= new Pile();
     controleur = new Controleur(LitteraleManager::getInstance(), *pile);
@@ -27,16 +56,16 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
    //can't rewrite windows message
     message->setReadOnly(true);//can't
     message->setText("coucou");//specify message to print
-    message->setStyleSheet("background: blake;color:white"); //have fun
+    message->setStyleSheet("background: grey;color:white"); //have fun
 
     vuePile->horizontalHeader()->setVisible(false);
     QStringList nombres;
 
-    for(unsigned int i=pile->getNbItemsToAffiche(); i>0; i--)
+    for(unsigned int i = pile->getNbItemsToAffiche(); i>0; i--)
     {
         QString str=QString::number(i);
-        str+=":";
-        nombres<<str;
+        str += ":";
+        nombres << str;
     }
 
     vuePile->setVerticalHeaderLabels(nombres); //align case nb

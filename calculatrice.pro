@@ -16,3 +16,5 @@ SOURCES += \
     main.cpp \
     pile.cpp \
     calc.cpp
+
+FORMS +=

@@ -21,7 +21,7 @@
 #include <QHeaderView>
 #include <QDebug>
 #include <QPushButton>
-
+#include <QGridLayout>
 
 using namespace std;
 
