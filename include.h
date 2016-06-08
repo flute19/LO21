@@ -13,14 +13,14 @@
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QTableWidget>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QHeaderView>
 #include <iostream>
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QDebug>
-
+#include <QPushButton>
 
 
 using namespace std;

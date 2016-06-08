@@ -5,6 +5,11 @@
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
     QCalc fenetre;
+    fenetre.setFixedSize(500, 500);
+
+    QLineEdit commande(&fenetre); //commande is on fenetre
+    commande.move(140,40);
+    commande.setFixedWidth(340);
 
     fenetre.show();
     fenetre.setWindowTitle(QApplication::translate("toplevel", "Accueil widget"));
