@@ -16,15 +16,16 @@ class Litterale{
 public:
     void affiche();
     Litterale(){}
-    virtual ~Litterale()=0;
+    ~Litterale(){}
+    virtual QString toString() const=0;
 };
 
 class LitteraleManager {
-    Litterale** exps;
+    Litterale** lits;
     unsigned int nb;
     unsigned int nbMax;
     void agrandissementCapacite();
-    LitteraleManager():exps(nullptr),nb(0),nbMax(0){}
+    LitteraleManager():lits(nullptr),nb(0),nbMax(0){}
     ~LitteraleManager();
     LitteraleManager(const LitteraleManager& m);
     LitteraleManager& operator=(const LitteraleManager& m);
@@ -44,27 +45,27 @@ public:
 
     class Iterator {
         friend class LitteraleManager;
-        Litterale** currentExp;
+        Litterale** currentlit;
         unsigned int nbRemain;
-        Iterator(Litterale** u, unsigned nb):currentExp(u),nbRemain(nb){}
+        Iterator(Litterale** u, unsigned nb):currentlit(u),nbRemain(nb){}
     public:
-        Iterator():currentExp(nullptr),nbRemain(0){}
+        Iterator():currentlit(nullptr),nbRemain(0){}
         bool isDone() const { return nbRemain==0; }
         void next() {
             if (isDone())
                 throw CalcException("error, next on an iterator which is done");
             nbRemain--;
-            currentExp++;
+            currentlit++;
         }
         Litterale& current() const {
             if (isDone())
                 throw CalcException("error, indirection on an iterator which is done");
-            return **currentExp;
+            return **currentlit;
         }
     };
 
     Iterator getIterator() {
-        return Iterator(exps,nb);
+        return Iterator(lits,nb);
     }
 
     class iterator {
@@ -77,8 +78,8 @@ public:
         bool operator!=(iterator it) const { return current!=it.current; }
         iterator& operator++(){ ++current; return *this; }
     };
-    iterator begin() { return iterator(exps); }
-    iterator end() { return iterator(exps+nb); }
+    iterator begin() { return iterator(lits); }
+    iterator end() { return iterator(lits+nb); }
 
     class const_iterator {
         Litterale** current;
@@ -90,15 +91,15 @@ public:
         bool operator!=(const_iterator it) const { return current!=it.current; }
         const_iterator& operator++(){ ++current; return *this; }
     };
-    const_iterator begin() const { return const_iterator(exps); }
-    const_iterator end() const { return const_iterator(exps+nb); }
+    const_iterator begin() const { return const_iterator(lits); }
+    const_iterator end() const { return const_iterator(lits+nb); }
 };
 
 class Controleur {
-    LitteraleManager& expMng;
-    Pile& expAff;
+    LitteraleManager& litMng;
+    Pile& litAff;
 public:
-    Controleur(LitteraleManager& m, Pile& v):expMng(m), expAff(v){}
+    Controleur(LitteraleManager& m, Pile& v):litMng(m), litAff(v){}
     void commande(const QString& c);
 
 };

@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
 
     Entier c1(1);
     Entier c2(3);
-    Entier res = c1+c2;
+    Entier* res = new Entier(c1.getValue()+c2.getValue());
 
     //res.affiche();
 return app.exec();

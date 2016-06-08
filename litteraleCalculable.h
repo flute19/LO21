@@ -4,12 +4,18 @@
 #include "include.h"
 #include "litteralemanager.h"
 
+
 //superclass of Litteral object you can use in arithmetic.
-template <class T>
-class LitteraleCalculable: public Litterale{
+class LitteraleCalculable {
 public:
-    virtual T& operator+ (T& l) =0;
+    LitteraleCalculable(){}
+    inline LitteraleCalculable & operator+(const LitteraleCalculable& l);
+    virtual LitteraleCalculable& addition(const LitteraleCalculable& l) const =0;
+    virtual QString toString() const=0;
 };
+
+inline LitteraleCalculable & LitteraleCalculable::operator+(const LitteraleCalculable& l){return this->addition(l);}
+
 
 
 #endif // LITTERALECALCULABLE_H

@@ -1,4 +1,4 @@
-#include 'pile.h'
+#include "pile.h"
 
 /**Definition of Pile's methods**/
 
@@ -44,6 +44,6 @@ Pile::~Pile(){
 
 Litterale& Pile::top() const {
 
-    if (nb==0) throw ComputerException("aucune Litterale sur la pile");
+    if (nb==0) throw CalcException("aucune Litterale sur la pile");
     return items[nb-1].getLitterale();
 }

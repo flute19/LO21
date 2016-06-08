@@ -8,15 +8,15 @@ class Litterale;
 
 //superclass of object on stack (interface with stack).
 class Item {
-    Litterale* exp;
+    Litterale* lit;
 public:
     //management
-    Item():exp(nullptr){}
-    void raz() { exp=0; }//set exp to 0#include "include.h"
+    Item():lit(nullptr){}
+    void raz() { lit=0; }//set lit to 0#include "include.h"
 
     //data
     Litterale& getLitterale() const;
-    void setLitterale(Litterale& e) { exp=&e; }//redefined exp value
+    void setLitterale(Litterale& e) { lit=&e; }//redefined lit value
 };
 
 #endif // ITEM_H

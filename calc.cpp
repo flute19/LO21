@@ -1,4 +1,9 @@
+#include <QApplication>
+#include <algorithm>
 #include "calc.h"
+#include "litteralemanager.h"
+
+LitteraleManager::Handler LitteraleManager::handler=LitteraleManager::Handler();
 
 QCalc::QCalc(QWidget* parent):QWidget (parent)
 {
@@ -16,8 +21,7 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     ;
 
     pile= new Pile();
-    controleur = new Controleur(
-                LitteraleManager::getInstance(), *pile);
+    controleur = new Controleur(LitteraleManager::getInstance(), *pile);
     setWindowTitle("UTCalc");
 
    //can't rewrite windows message
@@ -43,6 +47,16 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 
     for(unsigned int i=0; i<pile->getNbItemsToAffiche();i++)
         vuePile->setItem(i,0,new QTableWidgetItem(""));
+}
+
+LitteraleManager& LitteraleManager::getInstance(){
+    if (handler.instance==nullptr) handler.instance=new LitteraleManager;
+    return *handler.instance;
+}
+
+LitteraleManager::~LitteraleManager(){
+    for(unsigned int i=0; i<nb; i++) delete lits[i];
+    delete[] lits;
 }
 
 
@@ -72,3 +86,54 @@ void QCalc::getNextCommande()
     //message still print on screen, can't write next one
     commande->clear();
 }
+
+bool estUnOperateur(const QString s){
+    if (s=="+") return true;
+    if (s=="-") return true;
+    if (s=="*") return true;
+    if (s=="/") return true;
+    return false;
+}
+
+bool estUnNombre(const QString s){
+   bool ok=false;
+   s.toInt(&ok);
+   return ok;
+}
+
+
+void Controleur::commande(const QString& c){
+/*    if (estUnNombre(c)){
+        litAff.push(litMng.addLitterale(c.toInt()));
+    }else{
+
+        if (estUnOperateur(c)){
+            if (litAff.taille()>=2) {
+                Litterale v2=litAff.top().toString();
+                litMng.removeLitterale(litAff.top());
+                litAff.pop();
+                Litterale v1=litAff.top().toString();
+                litMng.removeLitterale(litAff.top());
+                litAff.pop();
+                int res;
+                if (c=="+") res=v1+v2;
+                if (c=="-") res=v1-v2;
+                if (c=="*") res=v1*v2;
+                if (c=="/") {
+                    if (v2!=0) res=v1/v2;
+                    else {
+                        litAff.setMessage("Erreur : division par zéro");
+                        res=v1;
+                    }
+                }
+                Litterale& e=litMng.addLitterale(res);
+                litAff.push(e);
+            }else{
+                litAff.setMessage("Erreur : pas assez d'arguments");
+            }
+        }else litAff.setMessage("Erreur : commande inconnue");
+    }
+*/}
+
+
+

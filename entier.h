@@ -5,18 +5,23 @@
 #include "litteraleCalculable.h"
 
 
-class Entier:public LitteraleCalculable<Entier>
+
+class Entier:public LitteraleCalculable
 {
 int value;
 public:
     //object management
     Entier(int x=0):value(x){}
     int getValue()const{return value;}
-
-    //object capacity
-    Entier& operator + (Entier& e);
+    inline QString toString() const;
+    LitteraleCalculable& addition(const LitteraleCalculable &l) const;
 
 };
 
+inline QString Entier::toString() const {
+    QString str;
+    str.setNum(value);
+    return str;
+}
 
 #endif // ENTIER_H
