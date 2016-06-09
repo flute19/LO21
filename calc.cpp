@@ -1,4 +1,4 @@
-#include <QApplication>
+#include "include.h"
 #include <algorithm>
 #include "calc.h"
 #include "litteralemanager.h"

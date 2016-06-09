@@ -4,13 +4,16 @@
 
 #include "include.h"
 #include "item.h"
-//#include "litterale.h"
-#include "litteraleCalculable.h"
-#include "pile.h"
-#include "structure.h"
 #include "calc.h"
 #include "entier.h"
+#include "litterale.h"
 #include "litteralemanager.h"
+#include "calcexception.h"
+#include "controleur.h"
+
+//-------- class Forward -------------
+class Item;
+class Litterale;
 
 class Pile : public QObject {
     Q_OBJECT

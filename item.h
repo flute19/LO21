@@ -1,8 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "litterale.h"
 #include "include.h"
-#include "litteralemanager.h"
+#include "calcexception.h"
 
 class Litterale;
 

@@ -1,7 +1,6 @@
 #ifndef CALC_H
 #define CALC_H
 
-#include "include.h"
 #include "pile.h"
 
 // class forward

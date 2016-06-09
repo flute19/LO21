@@ -1,24 +1,16 @@
 #ifndef LITTERALEMANAGER_H
 #define LITTERALEMANAGER_H
 
-//#include "litterale.h"
+#include "litterale.h"
 #include "include.h"
-#include "litteraleCalculable.h"
+#include "calcexception.h"
 #include "pile.h"
-#include "calc.h"
-#include "entier.h"
-#include "auxiliaire.h"
+
+
 
 //------- pre-forward------
 class Pile;
-
-class Litterale{
-public:
-    void affiche();
-    Litterale(){}
-    ~Litterale(){}
-    virtual QString toString() const=0;
-};
+class Litterale;
 
 class LitteraleManager {
     Litterale** lits;
@@ -95,13 +87,5 @@ public:
     const_iterator end() const { return const_iterator(lits+nb); }
 };
 
-class Controleur {
-    LitteraleManager& litMng;
-    Pile& litAff;
-public:
-    Controleur(LitteraleManager& m, Pile& v):litMng(m), litAff(v){}
-    void commande(const QString& c);
-
-};
 
 #endif // LITTERALEMANAGER_H
