@@ -32,6 +32,20 @@ QPushButton* neuf;
 
 //--- numeric pad ----
 QGridLayout* grille;
+QPushButton* zero ;
+QPushButton* point ;
+QPushButton* dollar ;
+
+QGridLayout* opCol;
+QPushButton* add ;
+QPushButton* diff ;
+QPushButton* mult ;
+QPushButton* quotient ;
+QPushButton* entree ;
+
+//--------- Interfaces creation--------------
+QHBoxLayout* blockP;
+
 
 
 

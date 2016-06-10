@@ -10,10 +10,11 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     pile=new Pile();
 
     //-------- Object instanciation -------------
+
     message= new QLineEdit(this) ;
     vuePile= new QTableWidget(pile->getNbItemsToAffiche(),1,this);
     commande= new QLineEdit(this);
-    couche= new QVBoxLayout;
+    couche= new QVBoxLayout(this);
 
     //---- Digits -------
     un = new QPushButton("1",this);
@@ -26,27 +27,64 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     huit = new QPushButton("8",this);
     neuf = new QPushButton("9",this);
 
-    grille = new QGridLayout(this);
+    zero = new QPushButton("0",this);
+    point = new QPushButton(".", this);
+    dollar = new QPushButton("$", this);
+
+    grille = new QGridLayout(this); //struc to place them
+
+
+    //---- Operators ----
+
+    add = new QPushButton("+",this) ;
+    diff = new QPushButton("-",this);
+    mult = new QPushButton("*",this);
+    quotient = new QPushButton("/",this) ;
+    entree = new QPushButton("go",this);
+
+    opCol = new QGridLayout(this); //struc to place them
+
+    //---- Interfaces ----
+    blockP = new QHBoxLayout(this);
 
 
     //--------- Object Display -------------------
+    //--- Pad---
+    grille->addWidget(un,3,0);
+    grille->addWidget(deux,3,1);
+    grille->addWidget(trois,3,2);
 
-    grille->addWidget(un,2,0);
-    grille->addWidget(deux,2,1);
-    grille->addWidget(trois,2,2);
+    grille->addWidget(quatre,2,0);
+    grille->addWidget(cinq,2,1);
+    grille->addWidget(six,2,2);
 
-    grille->addWidget(quatre,1,0);
-    grille->addWidget(cinq,1,1);
-    grille->addWidget(six,1,2);
+    grille->addWidget(sept,1,0);
+    grille->addWidget(huit,1,1);
+    grille->addWidget(neuf,1,2);
 
-    grille->addWidget(sept,2,0);
-    grille->addWidget(huit,2,1);
-    grille->addWidget(neuf,2,2);
+    grille->addWidget(zero,0,2);
+    grille->addWidget(point,0,2);
+    grille->addWidget(dollar,0,2);
+
+    grille->setVerticalSpacing(0.5);
+    grille->setHorizontalSpacing(0.5);
+
+
+    //--- Extra Pad
+    opCol->addWidget(entree);
+    opCol->addWidget(add);
+    opCol->addWidget(diff);
+    opCol->addWidget(mult);
+    opCol->addWidget(quotient);
+
+    //--- main block
+    blockP->addLayout(grille);
+    blockP->addLayout(opCol);
 
     couche->addWidget(message);
     couche->addWidget(vuePile);
     couche->addWidget(commande);
-    couche->addLayout(grille);
+    couche->addLayout(blockP);
     setLayout(couche);
 
     pile= new Pile();
