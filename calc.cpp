@@ -50,21 +50,21 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 
     //--------- Object Display -------------------
     //--- Pad---
-    grille->addWidget(un,3,0);
-    grille->addWidget(deux,3,1);
-    grille->addWidget(trois,3,2);
+    grille->addWidget(un,2,0);
+    grille->addWidget(deux,2,1);
+    grille->addWidget(trois,2,2);
 
-    grille->addWidget(quatre,2,0);
-    grille->addWidget(cinq,2,1);
-    grille->addWidget(six,2,2);
+    grille->addWidget(quatre,1,0);
+    grille->addWidget(cinq,1,1);
+    grille->addWidget(six,1,2);
 
-    grille->addWidget(sept,1,0);
-    grille->addWidget(huit,1,1);
-    grille->addWidget(neuf,1,2);
+    grille->addWidget(sept,0,0);
+    grille->addWidget(huit,0,1);
+    grille->addWidget(neuf,0,2);
 
-    grille->addWidget(zero,0,2);
-    grille->addWidget(point,0,2);
-    grille->addWidget(dollar,0,2);
+    grille->addWidget(zero,3,0);
+    grille->addWidget(point,3,1);
+    grille->addWidget(dollar,3,2);
 
     grille->setVerticalSpacing(0.5);
     grille->setHorizontalSpacing(0.5);
