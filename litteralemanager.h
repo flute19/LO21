@@ -2,6 +2,7 @@
 #define LITTERALEMANAGER_H
 
 #include "litterale.h"
+#include "entier.h"
 #include "include.h"
 #include "calcexception.h"
 #include "pile.h"
@@ -13,14 +14,19 @@ class Pile;
 class Litterale;
 
 class LitteraleManager {
+
     Litterale** lits;
     unsigned int nb;
     unsigned int nbMax;
-    void agrandissementCapacite();
+
+    //instances
     LitteraleManager():lits(nullptr),nb(0),nbMax(0){}
     ~LitteraleManager();
     LitteraleManager(const LitteraleManager& m);
     LitteraleManager& operator=(const LitteraleManager& m);
+
+    //management
+    void agrandissementCapacite();
 
     struct Handler{
         LitteraleManager* instance;
@@ -30,7 +36,7 @@ class LitteraleManager {
     };
     static Handler handler;
 public:
-    Litterale& addLitterale();
+    Litterale& addLitterale(int v);
     void removeLitterale(Litterale& e);
     static LitteraleManager& getInstance();
     static void libererInstance();

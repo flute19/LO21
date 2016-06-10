@@ -122,18 +122,6 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
         vuePile->setItem(i,0,new QTableWidgetItem(""));
 }
 
-LitteraleManager& LitteraleManager::getInstance(){
-    if (handler.instance==nullptr) handler.instance=new LitteraleManager;
-    return *handler.instance;
-}
-
-LitteraleManager::~LitteraleManager(){
-    for(unsigned int i=0; i<nb; i++) delete lits[i];
-    delete[] lits;
-}
-
-
-
 void QCalc::refresh(){
     //update message
     message->setText(pile->getMessage());
@@ -169,7 +157,7 @@ bool estUnOperateur(const QString s){
 }
 
 bool estUnNombre(const QString s){
-   bool ok=false;
+   bool ok = false;
    s.toInt(&ok);
    return ok;
 }

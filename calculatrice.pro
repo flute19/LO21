@@ -20,6 +20,7 @@ SOURCES += \
     entier.cpp \
     litterale.cpp \
     item.cpp \
-    controleur.cpp
+    controleur.cpp \
+    litteralemanager.cpp
 
 FORMS +=

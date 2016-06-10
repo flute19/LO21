@@ -55,6 +55,9 @@ explicit QCalc(QWidget *parent = 0);
 public slots:
 void refresh();
 void getNextCommande();
-};
+}; //end of declaration
+
+
+
 
 #endif // CALC_H

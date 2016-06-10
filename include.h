@@ -26,5 +26,8 @@
 using namespace std;
 
 
+// auxiliary functions' prototypes
+bool estUnOperateur(const QString s);
+bool estUnNombre(const QString s);
 
 #endif // INCLUDE_H

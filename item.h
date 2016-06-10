@@ -17,7 +17,7 @@ public:
 
     //data
     Litterale& getLitterale() const;
-    void setLitterale(Litterale& e) { lit=&e; }//redefined lit value
+    void setLitterale(Litterale& e) {lit = &e; }//redefined lit value
 };
 
 #endif // ITEM_H
