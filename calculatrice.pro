@@ -19,6 +19,7 @@ SOURCES += \
     calc.cpp \
     entier.cpp \
     litterale.cpp \
-    item.cpp
+    item.cpp \
+    controleur.cpp
 
 FORMS +=
