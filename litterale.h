@@ -2,6 +2,7 @@
 #define LITTERALE_H
 
 #include "include.h"
+#include "calcexception.h"
 
 
 //superclass of object identical to Item but not destroyed when pile is.

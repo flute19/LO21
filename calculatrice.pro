@@ -11,7 +11,8 @@ HEADERS += \
     litteralemanager.h \
     calcexception.h \
     litterale.h \
-    controleur.h
+    controleur.h \
+    rationnel.h
 
 SOURCES += \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     litterale.cpp \
     item.cpp \
     controleur.cpp \
-    litteralemanager.cpp
+    litteralemanager.cpp \
+    rationnel.cpp
 
 FORMS +=

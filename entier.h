@@ -1,13 +1,14 @@
 #ifndef ENTIER_H
 #define ENTIER_H
 
-#include "include.h"
+
 #include "litteraleCalculable.h"
+#include "rationnel.h"
+
+class Rationnel;
 
 
-
-class Entier:public LitteraleCalculable
-{
+class Entier:public LitteraleCalculable {
 int value;
 public:
     //object management

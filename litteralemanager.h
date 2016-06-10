@@ -2,8 +2,6 @@
 #define LITTERALEMANAGER_H
 
 #include "litterale.h"
-#include "entier.h"
-#include "include.h"
 #include "calcexception.h"
 #include "pile.h"
 

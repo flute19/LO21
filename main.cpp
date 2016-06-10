@@ -1,4 +1,3 @@
-#include "structure.h"
 #include "include.h"
 #include "calc.h"
 

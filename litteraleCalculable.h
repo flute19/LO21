@@ -1,8 +1,8 @@
 #ifndef LITTERALECALCULABLE_H
 #define LITTERALECALCULABLE_H
 
-#include "include.h"
-#include "litteralemanager.h"
+#include <QString>
+#include "litterale.h"
 
 
 //superclass of Litteral object you can use in arithmetic.
