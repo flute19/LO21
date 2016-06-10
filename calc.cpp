@@ -70,26 +70,32 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     grille->setHorizontalSpacing(0.5);
 
 
-    //--- Extra Pad
+    //--- Extra Pad---
     opCol->addWidget(entree);
     opCol->addWidget(add);
     opCol->addWidget(diff);
     opCol->addWidget(mult);
     opCol->addWidget(quotient);
 
-    //--- main block
+    //--- main block--
     blockP->addLayout(grille);
     blockP->addLayout(opCol);
 
+    //--- command ---
+    commande->move(140,40);
+    commande->setFixedWidth(340);
+
+    //--- global Layout--
     couche->addWidget(message);
     couche->addWidget(vuePile);
     couche->addWidget(commande);
     couche->addLayout(blockP);
+
     setLayout(couche);
 
+    //-- pile treatment---
     pile= new Pile();
     controleur = new Controleur(LitteraleManager::getInstance(), *pile);
-    setWindowTitle("UTCalc");
 
    //can't rewrite windows message
     message->setReadOnly(true);//can't

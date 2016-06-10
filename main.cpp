@@ -12,9 +12,8 @@ int main(int argc, char* argv[]){
     fenetre.setWindowTitle(QApplication::translate("toplevel", "Accueil widget"));
 
     //--------- command ligne settings ----------
-    QLineEdit commande(&fenetre);
-    commande.move(140,40);
-    commande.setFixedWidth(340);
+   // QLineEdit commande(&fenetre);
+
 
     //--------- Button creation -----------------
 
