@@ -29,5 +29,6 @@ using namespace std;
 // auxiliary functions' prototypes
 bool estUnOperateur(const QString s);
 bool estUnNombre(const QString s);
+int getArite(QString c);
 
 #endif // INCLUDE_H
