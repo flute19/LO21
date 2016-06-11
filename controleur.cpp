@@ -20,7 +20,7 @@ void Controleur::commande(const QString& c){
                         Litterale& v2 = litAff.top();
                         litMng.removeLitterale(litAff.top());
                         litAff.pop();
-                        const LitteraleCalculable& val2 = dynamic_cast<const LitteraleCalculable&>(v2);
+                        LitteraleCalculable& val2 = dynamic_cast<LitteraleCalculable&>(v2);
 
 
                         Litterale& v1 = litAff.top();
