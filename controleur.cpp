@@ -10,9 +10,12 @@ void Controleur::commande(const QString& c){
             litAff.push(litMng.addLitterale(c));
             break;
         case 2:
-            if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
+        litAff.setMessage(c);
+
+            //if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
                 litAff.push(litMng.addLitterale(c));
-            }
+           // }
+        break;
         case -1:
         if (estUnOperateur(c)){
             int type = getArite(c);
@@ -125,6 +128,6 @@ int estUnNombre(const QString s){
   // if(s.contains(&rx)) return 2;
 
 
-   return -1;
+   //return -1;
 }
 

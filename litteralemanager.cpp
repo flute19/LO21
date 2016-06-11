@@ -1,4 +1,5 @@
 #include "litteralemanager.h"
+#include "expression.h"
 
 void LitteraleManager::agrandissementCapacite() {
     Litterale** newtab=new Litterale*[(nbMax+1)*2];
@@ -9,16 +10,21 @@ void LitteraleManager::agrandissementCapacite() {
     delete old;
 }
 
-Litterale& LitteraleManager::addLitterale(QString v ){
+Litterale& LitteraleManager::addLitterale(QString v){
     switch (estUnNombre(v)){
         case 0:
-            if (nb==nbMax) agrandissementCapacite();
+            if (nb == nbMax) agrandissementCapacite();
             lits[nb++] = new Entier(v.toInt());
             return *lits[nb-1];
         break;
         case 1:
-            if (nb==nbMax) agrandissementCapacite();
+            if (nb == nbMax) agrandissementCapacite();
             lits[nb++] = new Reel(v.toFloat());
+            return *lits[nb-1];
+        break;
+        case 2:
+            if (nb == nbMax) agrandissementCapacite();
+            lits[nb++] = dynamic_cast<Litterale*>(new Expression(v));
             return *lits[nb-1];
         break;
         default: throw CalcException("Erreur, ceci n'est pas une litterale calculable.");
