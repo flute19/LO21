@@ -58,10 +58,11 @@ void Controleur::commande(const QString& c){
 //                        Litterale& ref = *res;
                         //Litterale& e = litMng.addLitterale(ref.toString());
                         //litAff.push(e);
-            } else{
-                        litAff.setMessage("Erreur : pas assez d'arguments");
-                    }
-                break;
+            }
+            else{
+                litAff.setMessage("Erreur : pas assez d'arguments");
+                }
+            break;
 //                case 1:if (litAff.taille()>=1) {
                     //                Litterale v2=litAff.top().toString();
                     //                litMng.removeLitterale(litAff.top());
@@ -87,9 +88,17 @@ void Controleur::commande(const QString& c){
 //                                }
 //                break;
             }
-        }else litAff.setMessage("Erreur : commande inconnue");
+    }
+        else {
+            if(c.end()==(const QChar*)"'" && c.begin()==(const QChar*)"'"){
+                litAff.push(litMng.addLitterale(c));
+            }
+            else{
+                litAff.setMessage("Erreur : commande inconnue");
 
-    default: break;
+            default: break;
+            }
+        }
     }
 }
 
