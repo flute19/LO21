@@ -9,6 +9,10 @@ void Controleur::commande(const QString& c){
         case 1:
             litAff.push(litMng.addLitterale(c));
             break;
+        case 2:
+            if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
+                litAff.push(litMng.addLitterale(c));
+            }
         case -1:
         if (estUnOperateur(c)){
             int type = getArite(c);
@@ -53,10 +57,11 @@ void Controleur::commande(const QString& c){
                                 litAff.push(e);
 
                             }                                        
-            } else{
-                        litAff.setMessage("Erreur : pas assez d'arguments");
-                    }
+                    } else{
+                                litAff.setMessage("Erreur : pas assez d'arguments");
+                            }
                 break;
+
                 case 1:if (litAff.taille()>=1) {
 
                     Litterale& v1 = litAff.top();
@@ -64,31 +69,29 @@ void Controleur::commande(const QString& c){
                     litAff.pop();
                     LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
-                                    if (c=="NEG"){
+//                                    if (c=="NEG"){
 
-                                        LitteraleCalculable& res = NEG(val1);
-                                        Litterale& e = litMng.addLitterale(res.toString());
-                                        litAff.push(e);
-                                    }
+//                                        LitteraleCalculable& res = val1.neg();
+//                                        Litterale& e = litMng.addLitterale(res.toString());
+//                                        litAff.push(e);
+//                                    }
 
                                 }else{
-                                    litAff.setMessage("Erreur : pas assez d'arguments");
+//                                    litAff.setMessage("Erreur : pas assez d'arguments");
                                 }
                 break;
-            }
-    }
-        else {
-            if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
-                litAff.push(litMng.addLitterale(c));
-            }
-            else{
-                litAff.setMessage("Erreur: Commande inconnue");
 
-            default: break;
+                default: break;
+               }
+        }else{
+                litAff.setMessage("Erreur: Commande inconnue");
             }
+
+        default: break;
+
         }
     }
-}
+
 
 int getArite(QString c){
     if (c == "+" || c == "-" || c == "*" || c == "/"){
@@ -111,6 +114,8 @@ bool estUnOperateur(const QString s){
 }
 
 int estUnNombre(const QString s){
+    return 2;
+
    bool ok = false;
   // QRegExp rx("[/]"); //rationnel
 

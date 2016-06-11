@@ -40,7 +40,7 @@ Rationnel::Rationnel(int n, int d) {
     }
 }
 
-//-----------------Operations ----------------------------
+//-----------------Operations binaires -------------------------
 
 // ----- Addition -----
 LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
@@ -199,6 +199,17 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
         }
     }
 }
+
+//---------------Operations unaires -------------
+
+//LitteraleCalculable& Rationnel::oppose()const{
+//    Entier n = (- num->getValue());
+//    Entier d = (den->getValue());
+//    Rationnel* res = new Rationnel(n, d);
+
+//    LitteraleCalculable& ref = *res;
+//    return ref;
+//}
 
 // ----- Simplification ---
 Entier pgcd(const Entier& a, const Entier& b){

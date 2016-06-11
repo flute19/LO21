@@ -114,7 +114,7 @@ LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
     }
 }
 
-//// ----- Division -------
+// ----- Division -------
 LitteraleCalculable& Reel::quotient(const LitteraleCalculable& l) const{
     const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 

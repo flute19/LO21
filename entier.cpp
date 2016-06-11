@@ -121,7 +121,7 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
     }
 }
 
-//// ----- Division -----
+// ----- Division -----
 
 LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
     const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
@@ -170,6 +170,12 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
     }
 }
 
+//------------- Operation unaires------------
+//LitteraleCalculable& Entier::oppose()const{
+//    Entier* res = new Entier(- value);
+//    LitteraleCalculable& ref = *res;
+//    return ref;
+//}
 
 
 

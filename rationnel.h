@@ -22,11 +22,14 @@ public:
     const Entier& getDen()const{return *den;}
     inline QString toString() const;
 
-    //operations
+    //operations binaires
     LitteraleCalculable& addition(const LitteraleCalculable &l) const;
     LitteraleCalculable& diff(const LitteraleCalculable &l) const;
     LitteraleCalculable& mult(const LitteraleCalculable &l) const;
     LitteraleCalculable& quotient(const LitteraleCalculable &l) const;
+
+    //operations unaires
+    //LitteraleCalculable& oppose() const;
 
     void simplifier();
 
