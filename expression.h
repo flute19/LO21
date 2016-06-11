@@ -5,6 +5,11 @@
 #include <QString>
 
 #include "litteraleCalculable.h"
+#include "controleur.h"
+#include "calc.h"
+
+class Pile;
+class Controleur;
 
 class Expression : LitteraleCalculable{
     QString value;
