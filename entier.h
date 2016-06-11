@@ -15,9 +15,14 @@ int value;
 public:
     //object management
     Entier(int x=0):value(x){}
+
+    //data
     int getValue()const{return value;}
     inline QString toString() const;
+
+    //operations
     LitteraleCalculable& addition(const LitteraleCalculable &l) const;
+    LitteraleCalculable& diff(const LitteraleCalculable &l) const;
 
 };
 

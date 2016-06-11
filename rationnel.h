@@ -16,10 +16,15 @@ public:
     Rationnel(int n, int d);
     Rationnel(const Entier& n, const Entier& d);
     Rationnel(const LitteraleCalculable& n, const LitteraleCalculable& d);
+
+    //data
     const Entier& getNum()const{return *num;}
     const Entier& getDen()const{return *den;}
     inline QString toString() const;
+
+    //operations
     LitteraleCalculable& addition(const LitteraleCalculable &l) const;
+    LitteraleCalculable& diff(const LitteraleCalculable &l) const;
     void simplifier();
 
 };

@@ -28,13 +28,18 @@ void Controleur::commande(const QString& c){
                         litAff.pop();
                         LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
-                       // LitteraleCalculable* res;
                         if (c == "+"){
-                           LitteraleCalculable& res = val1+val2;
-                           Litterale& e = litMng.addLitterale(res.toString());
-                           litAff.push(e);}
+                           LitteraleCalculable& res = val1 + val2;
 
-        //                if (c=="-") res=v1-v2;
+                           Litterale& e = litMng.addLitterale(res.toString());
+                           litAff.push(e);
+                        }
+                        if (c == "-") {
+                            LitteraleCalculable& res = val1 - val2;
+
+                            Litterale& e = litMng.addLitterale(res.toString());
+                            litAff.push(e);
+                        }
         //                if (c=="*") res=v1*v2;
         //                if (c=="/") {
         //                    if (v2!=0) res=v1/v2;
@@ -99,9 +104,13 @@ bool estUnOperateur(const QString s){
 
 int estUnNombre(const QString s){
    bool ok = false;
+  // QRegExp rx("[/]"); //rationnel
+
 
    if(s.toInt(&ok)) return 0;
    if(s.toFloat(&ok)) return 1;
+  // if(s.contains(&rx)) return 2;
+
 
    return -1;
 }

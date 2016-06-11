@@ -1,7 +1,7 @@
 #include "rationnel.h"
 
 
-// Constructeurs
+//----------------Constructeurs ------------------------
 
 Rationnel::Rationnel(const Entier &n, const Entier &d) {
     if (d.getValue()==0){
@@ -40,6 +40,9 @@ Rationnel::Rationnel(int n, int d) {
     }
 }
 
+//-----------------Operations ----------------------------
+
+// ----- Addition -----
 LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
     const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
 
@@ -55,6 +58,7 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
             Entier n= Entier((num->getValue()*ptRationnel->getDen().getValue())+(den->getValue()*ptRationnel->getNum().getValue()));
             Entier d= Entier(den->getValue()*ptRationnel->getDen().getValue());
             Rationnel* res= new Rationnel(n,d);
+
             res->simplifier();
             LitteraleCalculable& ref =*res;
             return ref;
@@ -70,6 +74,39 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
     }
 }
 
+// ----- Soustraction ---
+LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
+    const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
+    if (ptEntier != 0){
+        // Rationnel - Entier
+        LitteraleCalculable& ref = ptEntier->diff(*this);
+        return ref;
+    }
+    else{
+        const Rationnel* ptRationnel=dynamic_cast<const Rationnel*>(&l);
+        if (ptRationnel!=0){
+            // Rationnel - Rationnel
+            Entier n= Entier((num->getValue()*ptRationnel->getDen().getValue())-(den->getValue()*ptRationnel->getNum().getValue()));
+            Entier d= Entier(den->getValue()*ptRationnel->getDen().getValue());
+            Rationnel* res= new Rationnel(n,d);
+
+            res->simplifier();
+            LitteraleCalculable& ref =*res;
+            return ref;
+        }
+        else {
+            const Reel* ptReel=dynamic_cast<const Reel*>(&l);
+            if (ptReel!=0){
+                //Rationnel - Reel
+                LitteraleCalculable& ref = ptReel->diff(*this);
+                return ref;
+            }
+        }
+    }
+}
+
+// ----- Simplification ---
 Entier pgcd(const Entier& a, const Entier& b){
         Entier x(a.getValue());
         Entier y(b.getValue());

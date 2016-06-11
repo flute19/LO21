@@ -15,10 +15,14 @@ float value;
 public:
     //object management
     Reel(float x =0.0): value(x){}
+
+    //data
     float getValue()const{return value;}
     inline QString toString() const;
-    LitteraleCalculable& addition(const LitteraleCalculable &l) const;
 
+    //operations
+    LitteraleCalculable& addition(const LitteraleCalculable &l) const;
+    LitteraleCalculable& diff(const LitteraleCalculable &l) const;
 };
 
 inline QString Reel::toString() const {
