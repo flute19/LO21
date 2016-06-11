@@ -9,11 +9,21 @@ void LitteraleManager::agrandissementCapacite() {
     delete old;
 }
 
-Litterale& LitteraleManager::addLitterale(int v ){
-
-    if (nb==nbMax) agrandissementCapacite();
-    lits[nb++] = new Entier(v);
-    return *lits[nb-1];
+Litterale& LitteraleManager::addLitterale(QString v ){
+    switch (estUnNombre(v)){
+        case 0:
+            if (nb==nbMax) agrandissementCapacite();
+            lits[nb++] = new Entier(v.toInt());
+            return *lits[nb-1];
+        break;
+        case 1:
+            if (nb==nbMax) agrandissementCapacite();
+            lits[nb++] = new Reel(v.toFloat());
+            return *lits[nb-1];
+        break;
+        default: throw CalcException("Erreur, ceci n'est pas une litterale calculable.");
+        break;
+   }
 }
 
 void LitteraleManager::removeLitterale(Litterale& e){

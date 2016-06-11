@@ -6,6 +6,7 @@
 #include "item.h"
 #include "calc.h"
 #include "entier.h"
+#include "reel.h"
 #include "litterale.h"
 #include "litteralemanager.h"
 #include "calcexception.h"

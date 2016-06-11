@@ -34,7 +34,7 @@ class LitteraleManager {
     };
     static Handler handler;
 public:
-    Litterale& addLitterale(int v);
+    Litterale& addLitterale(QString v);
     void removeLitterale(Litterale& e);
     static LitteraleManager& getInstance();
     static void libererInstance();

@@ -4,10 +4,10 @@ void Controleur::commande(const QString& c){
 
     switch (estUnNombre(c)){
         case 0:
-            litAff.push(litMng.addLitterale(c.toInt()));
+            litAff.push(litMng.addLitterale(c));
             break;
         case 1:
-            litAff.push(litMng.addLitterale(c.toFloat()));
+            litAff.push(litMng.addLitterale(c));
             break;
         case -1:
 //        if (estUnOperateur(c)){
