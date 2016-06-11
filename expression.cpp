@@ -33,13 +33,10 @@ LitteraleCalculable& Expression::mult(const LitteraleCalculable& l)const{
     LitteraleCalculable& ref = *res;
     return ref;
 }
-<<<<<<< HEAD
+
 LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
     Expression* res = new Expression(value + " " + l.toString() + " /");
-=======
-LitteraleCalculable& Expression::division(const LitteraleCalculable& l)const{
-    Expression* res = new Expression(value+"/"+l.toString());
->>>>>>> refs/remotes/origin/master
+
     LitteraleCalculable& ref = *res;
     return ref;
 }

@@ -32,8 +32,8 @@ public:
     //management
     Pile():items(nullptr),nb(0),nbMax(0),message(""),nbAffiche(4){}//constructor
     ~Pile();//destructor
-    void setNbItemsToAffiche(unsigned int n) { nb=n; }
-    void setMessage(const QString& m) { message=m; modificationEtat(); }//message for user
+    void setNbItemsToAffiche(unsigned int n) { nb = n; }
+    void setMessage(const QString& m) { message = m; modificationEtat(); }//message for user
 
     //manipulation
     void push(Litterale& e);//add Litteral on pile
@@ -44,7 +44,7 @@ public:
 
     //data
     unsigned int taille() const { return nb; }
-    bool estVide() const { return nb==0; }//check if empty
+    bool estVide() const { return nb == 0; }//check if empty
     Litterale& top() const;
 
     /**This part manage Item on pile, as pile is a collection of Item**/

@@ -155,6 +155,51 @@ LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
     }
 }
 
+// ----- Division ---
+LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
+    const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
+    if (ptEntier != 0){
+        // Rationnel / Entier
+        Entier n = (num->getValue());
+        Entier d = (den->getValue() * ptEntier->getValue());
+        Rationnel* res = new Rationnel(n, d);
+
+        res->simplifier();
+        LitteraleCalculable& ref = *res;
+        return ref;
+    }
+    else{
+        const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
+
+        if (ptRationnel != 0){
+            // Rationnel / Rationnel
+            Entier n = Entier((num->getValue() * ptRationnel->getDen().getValue()));
+            Entier d = Entier(den->getValue() * ptRationnel->getDen().getValue());
+            Rationnel* res = new Rationnel(n,d);
+
+            res->simplifier();
+            LitteraleCalculable& ref = *res;
+            return ref;
+        }
+        else {
+            const Reel* ptReel = dynamic_cast<const Reel*>(&l);
+
+            if (ptReel != 0){
+                //Rationnel / Reel
+                Reel* res = new Reel(num->getValue() /(den->getValue() * ptReel->getValue()));
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Rationnel* res = new Rationnel(0,1);
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+        }
+    }
+}
+
 // ----- Simplification ---
 Entier pgcd(const Entier& a, const Entier& b){
         Entier x(a.getValue());
