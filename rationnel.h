@@ -3,7 +3,9 @@
 
 #include "litteraleCalculable.h"
 #include "entier.h"
+#include "reel.h"
 
+class Reel;
 class Entier;
 
 class Rationnel:public LitteraleCalculable{

@@ -4,8 +4,10 @@
 
 #include "litteraleCalculable.h"
 #include "rationnel.h"
+#include "reel.h"
 
 class Rationnel;
+class Reel;
 
 
 class Entier:public LitteraleCalculable {

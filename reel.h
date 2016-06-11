@@ -2,7 +2,11 @@
 #define REEL_H
 
 #include "litteraleCalculable.h"
+#include "rationnel.h"
+#include "entier.h"
 
+class Entier;
+class Rationnel;
 
 
 class Reel:public LitteraleCalculable

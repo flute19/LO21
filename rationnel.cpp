@@ -59,6 +59,14 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
             LitteraleCalculable& ref =*res;
             return ref;
         }
+        else {
+            const Reel* ptReel=dynamic_cast<const Reel*>(&l);
+            if (ptReel!=0){
+                //Rationnel + Reel
+                LitteraleCalculable& ref = ptReel->addition(*this);
+                return ref;
+            }
+        }
     }
 }
 
