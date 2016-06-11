@@ -2,6 +2,9 @@
 
 /**Definition of Reel's method**/
 
+//-----------------Operations ----------------------------
+
+// ----- Addition -----
 LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
     const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 
@@ -13,6 +16,7 @@ LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
     }
     else {
         const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
         if (ptEntier != 0){
             // Reel + Entier
             LitteraleCalculable& ref = ptEntier->addition(*this);
@@ -20,16 +24,18 @@ LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
         }
         else{
             const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
-            if (ptRationnel !=0){
+
+            if (ptRationnel != 0){
                 // Reel + Rationnel
-                Reel* res=new Reel(value+ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
-                LitteraleCalculable& ref= *res;
+                Reel* res = new Reel(value + ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
+                LitteraleCalculable& ref = *res;
                 return ref;
             }
         }
     }
 }
 
+// ----- Soustraction -----
 LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
     const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 
@@ -42,6 +48,7 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
     }
     else {
         const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
         if (ptEntier != 0){
             // Reel - Entier
             LitteraleCalculable& ref = ptEntier->diff(*this);
@@ -49,14 +56,48 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
         }
         else{
             const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
-            if (ptRationnel !=0){
+
+            if (ptRationnel != 0){
                 // Reel - Rationnel
-                Reel* res = new Reel(value-ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
+                Reel* res = new Reel(value - ptRationnel->getNum().getValue() / ptRationnel->getDen().getValue());
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+        }
+    }
+}
+
+// ----- Multiplication -------
+LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
+    const Reel* ptReel = dynamic_cast<const Reel*>(&l);
+
+    if (ptReel != 0){
+        //Reel * Reel
+        Reel* res = new Reel(value * ptReel->getValue());
+        LitteraleCalculable& ref = *res;
+
+        return ref;
+    }
+    else {
+        const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
+        if (ptEntier != 0){
+            // Reel * Entier
+            LitteraleCalculable& ref = ptEntier->mult(*this);
+            return ref;
+        }
+        else{
+            const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
+
+            if (ptRationnel != 0){
+                // Reel * Rationnel
+                Reel* res = new Reel(value * ptRationnel->getNum().getValue() / ptRationnel->getDen().getValue());
                 LitteraleCalculable& ref= *res;
                 return ref;
             }
         }
     }
 }
+
 
 //end of file

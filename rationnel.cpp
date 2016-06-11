@@ -106,6 +106,40 @@ LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
     }
 }
 
+// ----- Multiplication ---
+LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
+    const Entier* ptEntier = dynamic_cast<const Entier*>(&l);
+
+    if (ptEntier != 0){
+        // Rationnel * Entier
+        LitteraleCalculable& ref = ptEntier->mult(*this);
+        return ref;
+    }
+    else{
+        const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
+
+        if (ptRationnel != 0){
+            // Rationnel * Rationnel
+            Entier n = Entier((num->getValue() * ptRationnel->getNum().getValue()));
+            Entier d = Entier(den->getValue() * ptRationnel->getDen().getValue());
+            Rationnel* res = new Rationnel(n,d);
+
+            res->simplifier();
+            LitteraleCalculable& ref = *res;
+            return ref;
+        }
+        else {
+            const Reel* ptReel = dynamic_cast<const Reel*>(&l);
+
+            if (ptReel != 0){
+                //Rationnel * Reel
+                LitteraleCalculable& ref = ptReel->diff(*this);
+                return ref;
+            }
+        }
+    }
+}
+
 // ----- Simplification ---
 Entier pgcd(const Entier& a, const Entier& b){
         Entier x(a.getValue());

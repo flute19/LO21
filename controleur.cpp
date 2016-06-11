@@ -40,7 +40,12 @@ void Controleur::commande(const QString& c){
                             Litterale& e = litMng.addLitterale(res.toString());
                             litAff.push(e);
                         }
-        //                if (c=="*") res=v1*v2;
+                        if (c=="*") {
+                            LitteraleCalculable& res = val1 * val2;
+
+                            Litterale& e = litMng.addLitterale(res.toString());
+                            litAff.push(e);
+                        }
         //                if (c=="/") {
         //                    if (v2!=0) res=v1/v2;
         //                    else {
