@@ -9,7 +9,8 @@ void LitteraleManager::agrandissementCapacite() {
     delete old;
 }
 
-Litterale& LitteraleManager::addLitterale(int v){
+Litterale& LitteraleManager::addLitterale(int v ){
+
     if (nb==nbMax) agrandissementCapacite();
     lits[nb++] = new Entier(v);
     return *lits[nb-1];
