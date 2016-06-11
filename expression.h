@@ -14,7 +14,7 @@ public :
     LitteraleCalculable& addition(const LitteraleCalculable& l)const;
     LitteraleCalculable& diff(const LitteraleCalculable& l)const;
     LitteraleCalculable& mult(const LitteraleCalculable& l)const;
-    LitteraleCalculable& division(const LitteraleCalculable& l)const;
+    LitteraleCalculable& quotient(const LitteraleCalculable& l)const;
     inline QString toString() const{return value;}
 };
 

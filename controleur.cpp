@@ -20,7 +20,7 @@ void Controleur::commande(const QString& c){
                         Litterale& v2 = litAff.top();
                         litMng.removeLitterale(litAff.top());
                         litAff.pop();
-                        const LitteraleCalculable& val2 = dynamic_cast<const LitteraleCalculable&>(v2);
+                        LitteraleCalculable& val2 = dynamic_cast<LitteraleCalculable&>(v2);
 
 
                         Litterale& v1 = litAff.top();
@@ -46,13 +46,14 @@ void Controleur::commande(const QString& c){
                             Litterale& e = litMng.addLitterale(res.toString());
                             litAff.push(e);
                         }
-        //                if (c=="/") {
-        //                    if (v2!=0) res=v1/v2;
-        //                    else {
-        //                        litAff.setMessage("Erreur : division par zéro");
-        //                        res=v1;
-        //                    }
-//                        }
+                        if (c == "/") {
+                                LitteraleCalculable& res = val1 / val2;
+
+                                Litterale& e = litMng.addLitterale(res.toString());
+                                litAff.push(e);
+                            }
+
+                                                            //                        }
 //                        if (!res){ litAff.setMessage("L'opération a echouée");}
 //                        Litterale& ref = *res;
                         //Litterale& e = litMng.addLitterale(ref.toString());

@@ -35,7 +35,7 @@ LitteraleCalculable& Expression::mult(const LitteraleCalculable& l)const{
     LitteraleCalculable& ref = *res;
     return ref;
 }
-LitteraleCalculable& Expression::division(const LitteraleCalculable& l)const{
+LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
     Expression* res = new Expression(value + " " + l.toString() + " /");
     LitteraleCalculable& ref = *res;
     return ref;
