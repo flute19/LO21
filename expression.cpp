@@ -40,3 +40,13 @@ LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
     LitteraleCalculable& ref = *res;
     return ref;
 }
+
+//------------- Operateur unaires ----------
+LitteraleCalculable& Expression::oppose() const{
+    QString s = "-("+value;
+    s.append(")");
+
+    Expression* res = new Expression(s);
+    LitteraleCalculable& ref = *res;
+    return ref;
+}

@@ -171,11 +171,11 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
 }
 
 //------------- Operation unaires------------
-//LitteraleCalculable& Entier::oppose()const{
-//    Entier* res = new Entier(- value);
-//    LitteraleCalculable& ref = *res;
-//    return ref;
-//}
+LitteraleCalculable& Entier::oppose()const{
+    Entier* res = new Entier(- value);
+    LitteraleCalculable& ref = *res;
+    return ref;
+}
 
 
 

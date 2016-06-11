@@ -24,8 +24,8 @@ public:
     virtual LitteraleCalculable& quotient(const LitteraleCalculable& l) const =0;
 
     //operations unaires
-//    inline LitteraleCalculable& neg();
-//    virtual LitteraleCalculable& oppose()const =0;
+    inline LitteraleCalculable& neg();
+    virtual LitteraleCalculable& oppose()const =0;
 
 
     virtual QString toString() const=0;
@@ -36,11 +36,10 @@ inline LitteraleCalculable & LitteraleCalculable::operator-(const LitteraleCalcu
 inline LitteraleCalculable & LitteraleCalculable::operator*(const LitteraleCalculable& l){return this->mult(l);}
 inline LitteraleCalculable & LitteraleCalculable::operator/(const LitteraleCalculable& l){return this->quotient(l);}
 
-//inline LitteraleCalculable & LitteraleCalculable::neg(){
-//    LitteraleCalculable& opp = this->oppose();
-//    //delete this;
-//    return opp;
-//}
+inline LitteraleCalculable & LitteraleCalculable::neg(){
+    LitteraleCalculable& opp = this->oppose();
+    return opp;
+}
 
 
 #endif // LITTERALECALCULABLE_H

@@ -27,7 +27,7 @@ public:
     LitteraleCalculable& quotient(const LitteraleCalculable &l) const;
 
     //operations unaires
-    //LitteraleCalculable& oppose() const;
+    LitteraleCalculable& oppose() const;
 
 };
 

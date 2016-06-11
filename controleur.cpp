@@ -10,9 +10,7 @@ void Controleur::commande(const QString& c){
             litAff.push(litMng.addLitterale(c));
             break;
         case 2:
-        litAff.setMessage(c);
-
-            //if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
+           //if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
                 litAff.push(litMng.addLitterale(c));
            // }
         break;
@@ -65,23 +63,24 @@ void Controleur::commande(const QString& c){
                             }
                 break;
 
-                case 1:if (litAff.taille()>=1) {
+                case 1:
+                    if (litAff.taille()>=1) {
 
-                    Litterale& v1 = litAff.top();
-                    litMng.removeLitterale(litAff.top());
-                    litAff.pop();
-                    LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
+                        Litterale& v1 = litAff.top();
+                        litMng.removeLitterale(litAff.top());
+                        litAff.pop();
+                        LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
-//                                    if (c=="NEG"){
+                        if (c == "NEG"){
 
-//                                        LitteraleCalculable& res = val1.neg();
-//                                        Litterale& e = litMng.addLitterale(res.toString());
-//                                        litAff.push(e);
-//                                    }
+                            LitteraleCalculable& res = val1.neg();
+                            Litterale& e = litMng.addLitterale(res.toString());
+                            litAff.push(e);
+                        }
 
-                                }else{
-//                                    litAff.setMessage("Erreur : pas assez d'arguments");
-                                }
+                    }else{
+                        litAff.setMessage("Erreur : pas assez d'arguments");
+                    }
                 break;
 
                 default: break;
@@ -107,17 +106,17 @@ int getArite(QString c){
 }
 
 bool estUnOperateur(const QString s){
-    if (s=="+") return true;
-    if (s=="-") return true;
-    if (s=="*") return true;
-    if (s=="/") return true;
-    if (s=="NEG") return true;
+    if (s == "+") return true;
+    if (s == "-") return true;
+    if (s == "*") return true;
+    if (s == "/") return true;
+    if (s == "NEG") return true;
 
     return false;
 }
 
 int estUnNombre(const QString s){
-    return 2;
+
 
    bool ok = false;
   // QRegExp rx("[/]"); //rationnel
@@ -128,6 +127,6 @@ int estUnNombre(const QString s){
   // if(s.contains(&rx)) return 2;
 
 
-   //return -1;
+   return -1;
 }
 

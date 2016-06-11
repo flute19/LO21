@@ -2,7 +2,7 @@
 
 /**Definition of Reel's method**/
 
-//-----------------Operations ----------------------------
+//-----------------Operations binaires ----------------------------
 
 // ----- Addition -----
 LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
@@ -114,7 +114,7 @@ LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
     }
 }
 
-// ----- Division -------
+// ----- Division ---------
 LitteraleCalculable& Reel::quotient(const LitteraleCalculable& l) const{
     const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 
@@ -161,5 +161,12 @@ LitteraleCalculable& Reel::quotient(const LitteraleCalculable& l) const{
     }
 }
 
+//------------- Operation unaires------------
+LitteraleCalculable& Reel::oppose()const{
+
+    Reel* res = new Reel(- value);
+    LitteraleCalculable& ref = *res;
+    return ref;
+}
 
 //end of file
