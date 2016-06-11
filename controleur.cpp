@@ -90,11 +90,11 @@ void Controleur::commande(const QString& c){
             }
     }
         else {
-            if(c.end()==(const QChar*)"'" && c.begin()==(const QChar*)"'"){
+            if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
                 litAff.push(litMng.addLitterale(c));
             }
             else{
-                litAff.setMessage("Erreur : commande inconnue");
+                litAff.setMessage("Erreur: Commande inconnue");
 
             default: break;
             }
