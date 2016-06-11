@@ -1,7 +1,7 @@
 #ifndef REEL_H
 #define REEL_H
 
-#include "litteraleCalculable.h"
+
 #include "rationnel.h"
 #include "entier.h"
 

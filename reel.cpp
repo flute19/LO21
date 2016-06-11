@@ -34,9 +34,10 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
     const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 
     if (ptReel != 0){
-        // Reel - Reel
+        //Reel - Reel
         Reel* res = new Reel(value - ptReel->getValue());
         LitteraleCalculable& ref = *res;
+
         return ref;
     }
     else {
@@ -50,7 +51,7 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
             const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
             if (ptRationnel !=0){
                 // Reel - Rationnel
-                Reel* res=new Reel(value-ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
+                Reel* res = new Reel(value-ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
                 LitteraleCalculable& ref= *res;
                 return ref;
             }

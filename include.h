@@ -23,6 +23,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QRegExp>
+#include <functional>
 
 using namespace std;
 
