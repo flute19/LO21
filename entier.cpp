@@ -32,6 +32,11 @@ LitteraleCalculable& Entier::addition(const LitteraleCalculable& l) const{
                 Reel* res= new Reel(value+ptReel->getValue());
                 LitteraleCalculable& ref = *res;
                 return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Entier* res = new Entier();
+                LitteraleCalculable& ref = *res;
+                return ref;
             }
         }
     }
@@ -63,6 +68,11 @@ LitteraleCalculable& Entier::diff(const LitteraleCalculable& l) const{
             if (ptReel!=0){
                 // Entier - Reel
                 Reel* res= new Reel(value-ptReel->getValue());
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Entier* res = new Entier();
                 LitteraleCalculable& ref = *res;
                 return ref;
             }
@@ -99,6 +109,11 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
             if (ptReel!=0){
                 // Entier * Reel
                 Reel* res= new Reel(value * ptReel->getValue());
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Entier* res = new Entier();
                 LitteraleCalculable& ref = *res;
                 return ref;
             }

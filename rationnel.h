@@ -13,7 +13,7 @@ const Entier* num;
 const Entier* den;
 public:
     //object management
-    Rationnel(int n, int d);
+    Rationnel(int n=0, int d=1);
     Rationnel(const Entier& n, const Entier& d);
     Rationnel(const LitteraleCalculable& n, const LitteraleCalculable& d);
 

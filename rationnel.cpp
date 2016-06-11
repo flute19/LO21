@@ -69,6 +69,11 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
                 //Rationnel + Reel
                 LitteraleCalculable& ref = ptReel->addition(*this);
                 return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Rationnel* res = new Rationnel(0,1);
+                LitteraleCalculable& ref = *res;
+                return ref;
             }
         }
     }
@@ -100,6 +105,11 @@ LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
             if (ptReel!=0){
                 //Rationnel - Reel
                 LitteraleCalculable& ref = ptReel->diff(*this);
+                return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Rationnel* res = new Rationnel(0,1);
+                LitteraleCalculable& ref = *res;
                 return ref;
             }
         }
@@ -134,6 +144,11 @@ LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
             if (ptReel != 0){
                 //Rationnel * Reel
                 LitteraleCalculable& ref = ptReel->diff(*this);
+                return ref;
+            }else{
+                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                Rationnel* res = new Rationnel(0,1);
+                LitteraleCalculable& ref = *res;
                 return ref;
             }
         }
