@@ -18,18 +18,30 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 
     //---- Digits -------
     un = new QPushButton("1",this);
+    connect(un, SIGNAL(clicked()),this,SLOT(affUn()));
     deux = new QPushButton("2",this);
+    connect(deux, SIGNAL(clicked()),this,SLOT(affDeux()));
     trois = new QPushButton("3",this);
+    connect(trois, SIGNAL(clicked()),this,SLOT(affTrois()));
     quatre = new QPushButton("4",this);
+    connect(quatre, SIGNAL(clicked()),this,SLOT(affQuatre()));
     cinq = new QPushButton("5",this);
+    connect(cinq, SIGNAL(clicked()),this,SLOT(affCinq()));
     six = new QPushButton("6",this);
+    connect(six, SIGNAL(clicked()),this,SLOT(affSix()));
     sept = new QPushButton("7",this);
+    connect(sept, SIGNAL(clicked()),this,SLOT(affSept()));
     huit = new QPushButton("8",this);
+    connect(huit, SIGNAL(clicked()),this,SLOT(affHuit()));
     neuf = new QPushButton("9",this);
+    connect(neuf, SIGNAL(clicked()),this,SLOT(affNeuf()));
 
     zero = new QPushButton("0",this);
+    connect(zero, SIGNAL(clicked()),this,SLOT(affZero()));
     point = new QPushButton(".", this);
+    connect(point, SIGNAL(clicked()),this,SLOT(affPoint()));
     dollar = new QPushButton("$", this);
+    connect(dollar, SIGNAL(clicked()),this,SLOT(affDollar()));
 
     grille = new QGridLayout(this); //struc to place them
 
@@ -37,9 +49,13 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     //---- Operators ----
 
     add = new QPushButton("+",this) ;
+    connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
     diff = new QPushButton("-",this);
+    connect(diff, SIGNAL(clicked()),this,SLOT(affMoins()));
     mult = new QPushButton("*",this);
+    connect(mult, SIGNAL(clicked()),this,SLOT(affEtoile()));
     quotient = new QPushButton("/",this) ;
+    connect(quotient, SIGNAL(clicked()),this,SLOT(affDiviser()));
     entree = new QPushButton("go",this);
 
     opCol = new QGridLayout(this); //struc to place them
