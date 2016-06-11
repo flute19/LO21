@@ -55,6 +55,28 @@ explicit QCalc(QWidget *parent = 0);
 public slots:
 void refresh();
 void getNextCommande();
+
+public slots :
+
+//Digits
+void affZero(){commande->insert("0");}
+void affUn(){commande->insert("1");}
+void affDeux(){commande->insert("2");}
+void affTrois(){commande->insert("3");}
+void affQuatre(){commande->insert("4");}
+void affCinq(){commande->insert("5");}
+void affSix(){commande->insert("6");}
+void affSept(){commande->insert("7");}
+void affHuit(){commande->insert("8");}
+void affNeuf(){commande->insert("9");}
+
+void affPoint(){commande->insert(".");}
+void affDollar(){commande->insert("$");}
+void affPlus(){commande->insert("+");}
+void affMoins(){commande->insert("-");}
+void affEtoile(){commande->insert("*");}
+void affDiviser(){commande->insert("/");}
+
 }; //end of declaration
 
 
