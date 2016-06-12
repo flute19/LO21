@@ -95,11 +95,11 @@ void Controleur::commande(const QString& c){
                                 NonComplexe& va1 = dynamic_cast<NonComplexe&>(val1);
                                 NonComplexe& va2 = dynamic_cast<NonComplexe&>(val2);
 
-
                                 Complexe* res = new Complexe(va1, va2);
 
                                 Litterale& e = litMng.addLitterale(res->toString());
                                 litAff.push(e);
+
                             }else{
                                 litAff.setMessage("erreur de type. Doit etre un entier.");
                             }
@@ -187,6 +187,7 @@ int estUnNombre(const QString s){
    if(s.toFloat(&ok)) return 1;
    if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3;
+   if(s.contains(QRegExp("([0-9]+)$([0-9]+)"))) return 4;
 
 
    return -1;
