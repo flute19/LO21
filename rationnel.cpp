@@ -65,43 +65,48 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
         return ref;
     }
     else{
-        const Rationnel* ptRationnel=dynamic_cast<const Rationnel*>(&l);
+        const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
 
         if (ptRationnel!=0){
             // Rationnel + Rationnel
-            Entier n= Entier((num->getValue()*ptRationnel->getDen().getValue())+(den->getValue()*ptRationnel->getNum().getValue()));
-            Entier d= Entier(den->getValue()*ptRationnel->getDen().getValue());
-            Rationnel* res= new Rationnel(n,d);
+            Entier n = Entier((num->getValue()*ptRationnel->getDen().getValue())+(den->getValue()*ptRationnel->getNum().getValue()));
+            Entier d = Entier(den->getValue()*ptRationnel->getDen().getValue());
+            Rationnel* res = new Rationnel(n,d);
 
             //res->simplifier();
-            LitteraleCalculable& ref =*res;
+            LitteraleCalculable& ref = *res;
             return ref;
         }
         else {
-            const Reel* ptReel=dynamic_cast<const Reel*>(&l);
+            const Reel* ptReel = dynamic_cast<const Reel*>(&l);
 
-            if (ptReel!=0){
+            if (ptReel != 0){
                 //Rationnel + Reel
                 LitteraleCalculable& ref = ptReel->addition(*this);
                 return ref;
             }else{
-                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                const Expression* ptExpression = dynamic_cast<const Expression*>(&l);
 
-                if (ptExpression!=0){
+                if (ptExpression != 0){
                         // Rationnel + Expression
                         LitteraleCalculable& ref = ptExpression->addition(*this);
                         return ref;
-                   }
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
 
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Rationnel* res = new Rationnel(0,1);
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                    if (ptComplexe!=0){
+                            // Rationnel + Complexe
+                            LitteraleCalculable& ref = ptExpression->addition(*this);
+                            return ref;
+                       }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Rationnel* res = new Rationnel(0,1);
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Soustraction ---
@@ -137,17 +142,23 @@ LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
                         // Rationnel - Expression
                         LitteraleCalculable& ref = ptExpression->diff(*this);
                         return ref;
-                   }
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
 
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Rationnel* res = new Rationnel(0,1);
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                        if (ptComplexe!=0){
+                                // Rationnel - Complexe
+                                LitteraleCalculable& ref = ptExpression->addition(*this);
+                                return ref;
+                        }
+
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Rationnel* res = new Rationnel(0,1);
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Multiplication ---
@@ -185,17 +196,22 @@ LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
                         // Rationnel * Expression
                         LitteraleCalculable& ref = ptExpression->mult(*this);
                         return ref;
-                   }
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
 
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Rationnel* res = new Rationnel(0,1);
-                    LitteraleCalculable& ref = *res;
-                    return ref;
-                }
+                        if (ptComplexe!=0){
+                                // Rationnel * Complexe
+                                LitteraleCalculable& ref = ptExpression->mult(*this);
+                                return ref;
+                           }
+                  }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Rationnel* res = new Rationnel(0,1);
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Division ---
@@ -253,16 +269,13 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
                         LitteraleCalculable& ref = ptExpression->quotient(*this);
                         return ref;
                    }
-
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Rationnel* res = new Rationnel(0,1);
-                    LitteraleCalculable& ref = *res;
-                    return ref;
-                }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Rationnel* res = new Rationnel(0,1);
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 //---------------Operations unaires -------------

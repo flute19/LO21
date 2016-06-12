@@ -39,14 +39,20 @@ LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
                    }
 
                 else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Reel* res = new Reel();
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                    if (ptComplexe!=0){
+                            // Reel + Expression
+                            LitteraleCalculable& ref = ptComplexe->addition(*this);
+                            return ref;
+                       }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Reel* res = new Reel();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Soustraction -----
@@ -131,14 +137,20 @@ LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
                    }
 
                 else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Reel* res = new Reel();
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                    if (ptComplexe!=0){
+                            // Reel * Complexe
+                            LitteraleCalculable& ref = ptComplexe->mult(*this);
+                            return ref;
+                       }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Reel* res = new Reel();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Division ---------

@@ -10,13 +10,13 @@ void Controleur::commande(const QString& c){
             litAff.push(litMng.addLitterale(c));
             break;
         case 2:
-           //if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
-                litAff.push(litMng.addLitterale(c));
-           // }
+            litAff.push(litMng.addLitterale(c));
             break;
         case 3:
             litAff.push(litMng.addLitterale(c));
             break;
+        case 4:
+            litAff.push(litMng.addLitterale(c));
         case 5:
         {
             QStringList str=c.split(' ');
@@ -112,8 +112,7 @@ void Controleur::commande(const QString& c){
                                 NonComplexe& va2 = dynamic_cast<NonComplexe&>(val2);
 
                                 Complexe* res = new Complexe(va1, va2);
-
-                                Litterale& e = litMng.addLitterale(res->toString());
+                                Litterale& e = litMng.addLitterale(res->Complexe::toString());
                                 litAff.push(e);
                             }
                         litMng.removeLitterale(v1);
@@ -201,9 +200,9 @@ int estUnNombre(const QString s){
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
    if(s.contains(QRegExp("^(STO)(' ')(.+)(' ')(^[A-Z])(.*)"))) return 5; //Création d'atome
    if(s.contains(QRegExp("^\\[(.+)\\]$"))) return 6; // Programme
-   if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;
+   if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;//rationnel
 
-   if(s.contains(QRegExp("([0-9]+)$([0-9]+)"))) return 4;
+   if(s.contains(QRegExp("([0-9]+)\\$([0-9]+)"))) return 4;//complexe
 
 
 
