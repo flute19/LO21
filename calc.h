@@ -59,7 +59,6 @@ public slots:
 void refresh();
 void getNextCommande();
 
-public slots :
 
 //Digits
 void affZero(){commande->insert("0");}

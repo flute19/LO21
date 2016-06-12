@@ -2,6 +2,7 @@
 
 void Controleur::commande(const QString& c){
 
+
     switch (estUnNombre(c)){
         case 0:
             litAff.push(litMng.addLitterale(c));
