@@ -44,11 +44,11 @@ Rationnel::Rationnel(int n, int d) {
 
  QString Rationnel::toString() const {
 
-    QString str ;//= num->Entier::toString();
+    QString str = num->Entier::toString();
     str.append("/");
 
-    //QString tamp = den->Entier::toString();
-    //str.append(tamp);
+    QString tamp = den->Entier::toString();
+    str.append(tamp);
 
     return str;
 }

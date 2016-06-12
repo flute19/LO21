@@ -1,5 +1,6 @@
 #include "litteralemanager.h"
 #include "expression.h"
+#include <QStringList>
 
 void LitteraleManager::agrandissementCapacite() {
     Litterale** newtab=new Litterale*[(nbMax+1)*2];
@@ -11,6 +12,8 @@ void LitteraleManager::agrandissementCapacite() {
 }
 
 Litterale& LitteraleManager::addLitterale(QString v){
+bool ok = true;
+
     switch (estUnNombre(v)){
         case 0:
             if (nb == nbMax) agrandissementCapacite();
@@ -22,6 +25,15 @@ Litterale& LitteraleManager::addLitterale(QString v){
             lits[nb++] = new Reel(v.toFloat());
             return *lits[nb-1];
         break;
+        case 2:
+            if(ok){
+            if (nb == nbMax) agrandissementCapacite();
+
+            QStringList l = v.split("/");
+
+            lits[nb++] = new Rationnel(l.at(0).toInt(), l.at(1).toInt());
+            return *lits[nb-1];
+            }
         case 3:
             if (nb == nbMax) agrandissementCapacite();
             lits[nb++] = dynamic_cast<Litterale*>(new Expression(v));

@@ -61,8 +61,7 @@ void Controleur::commande(const QString& c){
                             }
                         if (c == "MOD") {
                             bool ok = true;
-                            if(ok//val1.toString.toInt(&ok)
-                                    ){
+                            if(ok){
 
                                 Entier& va1 = dynamic_cast<Entier&>(val1);
                                 Entier& va2 = dynamic_cast<Entier&>(val2);
@@ -107,7 +106,7 @@ void Controleur::commande(const QString& c){
                         litMng.removeLitterale(v1);
                         litMng.removeLitterale(v2);
 
-                    } else{
+                    }else{
                                 litAff.setMessage("Erreur : pas assez d'arguments");
                             }
                 break;
@@ -183,11 +182,10 @@ int estUnNombre(const QString s){
 
 
    bool ok = false;
-  // QRegExp rx("[/]"); //rationnel
 
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
-  // if(s.contains(&rx)) return 2;
+   if(s.contains(QRegExp("/"))) return 2;
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3;
 
 
