@@ -211,7 +211,7 @@ LitteraleCalculable& Rationnel::oppose()const{
     return ref;
 }
 
-// ----- Simplification ---
+// -------------- Simplification ----------------
 Entier pgcd(const Entier& a, const Entier& b){
         Entier x(a.getValue());
         Entier y(b.getValue());

@@ -57,7 +57,40 @@ void Controleur::commande(const QString& c){
                                 Litterale& e = litMng.addLitterale(res.toString());
                                 litAff.push(e);
 
-                            }                                        
+                            }
+                        if (c == "MOD") {
+                            bool ok = true;
+                            if(ok//val1.toString.toInt(&ok)
+                                    ){
+
+                                Entier& va1 = dynamic_cast<Entier&>(val1);
+                                Entier& va2 = dynamic_cast<Entier&>(val2);
+
+
+                                Entier& res = va1.mod(va2);
+
+                                Litterale& e = litMng.addLitterale(res.toString());
+                                litAff.push(e);
+                            }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
+
+                            }
+                        if (c == "DIV") {
+                            bool ok = true;
+                            if(ok//val1.toString.toInt(&ok)
+                                    ){
+
+                                Entier& va1 = dynamic_cast<Entier&>(val1);
+                                Entier& va2 = dynamic_cast<Entier&>(val2);
+
+
+                                Entier& res = va1.div(va2);
+
+                                Litterale& e = litMng.addLitterale(res.toString());
+                                litAff.push(e);
+                            }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
+
+                        }
+
                     } else{
                                 litAff.setMessage("Erreur : pas assez d'arguments");
                             }
@@ -96,7 +129,7 @@ void Controleur::commande(const QString& c){
 
 
 int getArite(QString c){
-    if (c == "+" || c == "-" || c == "*" || c == "/"){
+    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "DIV" || c == "MOD"){
         return 2;
     }
     if (c == "NEG"){
@@ -111,6 +144,8 @@ bool estUnOperateur(const QString s){
     if (s == "*") return true;
     if (s == "/") return true;
     if (s == "NEG") return true;
+    if (s == "DIV") return true;
+    if (s == "MOD") return true;
 
     return false;
 }

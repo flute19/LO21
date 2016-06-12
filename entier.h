@@ -26,6 +26,10 @@ public:
     LitteraleCalculable& mult(const LitteraleCalculable &l) const;
     LitteraleCalculable& quotient(const LitteraleCalculable &l) const;
 
+    Entier& div(Entier& e);
+    Entier& mod(Entier& e);
+
+
     //opérations unaires
     LitteraleCalculable& oppose()const;
 

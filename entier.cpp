@@ -121,6 +121,22 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
     }
 }
 
+//------ Division Entiere & Modulo -----------
+Entier& Entier::div(Entier& e){
+    Entier* res = new Entier(value / e.getValue());
+    Entier& ref = *res;
+    return ref;
+}
+
+Entier& Entier::mod(Entier& e){
+    int tamp = value / e.getValue();
+    tamp = value - tamp * e.getValue();
+
+    Entier* res = new Entier(tamp);
+    Entier& ref = *res;
+    return ref;
+}
+
 // ----- Division -----
 
 LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
