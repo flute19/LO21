@@ -2,8 +2,8 @@
 
 
 QString Expression::eval() const {
-    if (value.isEmpty()){
-        //return value;
+    if (value.contains(QRegExp("([a-zA-Z]+)"))){
+        return value;
     }
     else{
 
@@ -15,14 +15,23 @@ QString Expression::eval() const {
            Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
            controleur->commande(QString(*it));*/
 
-       // QString expr=value;
-       // expr.remove(QChar(' '));
-       // expr[0]='(';
-        //expr[expr.size()]=')';
-        //expr=InfixToPostfix(expr);
-        return "lol";
+        QString expr=value;
+        expr[0]='(';
+        expr[expr.size()]=')';
+        expr=InfixToPostfix(expr);
+        QStringList listeLitterales = expr.split(" ");
+        QStringList::iterator it=listeLitterales.begin();
+        Pile *pile= new Pile();
+        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
+        while (it!=listeLitterales.end()){
+            controleur->commande(QString(*it));
+            it++;
+        }
+        QString res=pile->top().toString();
+
+        return res;
             }
-    return "erreur";
+    return "'erreur'";
 }
 QString InfixToPostfix(QString exp){
     QStack<QChar> S;
@@ -33,14 +42,16 @@ QString InfixToPostfix(QString exp){
             if(estUnOperateur(QString(exp[i]))){
             while (!S.empty() && S.top() != '(' && HasHigherPrecedence(S.top(),exp[i]))
             {
-                postfix+= S.top();
+                postfix+= ' '+S.top();
                 S.pop();
             }
             S.push(exp[i]);
             }
             else
                 if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1){
-                    postfix+=exp[i];
+                    postfix+= exp[i];
+                    if (!(estUnNombre(QString(exp[i+1]))==0 || estUnNombre(QString(exp[i+1]))==1))
+                        postfix+= ' ';
                 }
                 else
                     if (exp[i] == '('){
@@ -50,7 +61,7 @@ QString InfixToPostfix(QString exp){
                     else
                         if(exp[i] == ')'){
                             while(!S.empty() && S.top() !=  '(') {
-                                postfix += S.top();
+                                postfix += ' '+S.top();
                                 S.pop();
                             }
                             S.pop();
@@ -59,7 +70,7 @@ QString InfixToPostfix(QString exp){
         }
 
         while(!S.empty()) {
-                postfix += S.top();
+                postfix += ' '+S.top();
                 S.pop();
         }
 

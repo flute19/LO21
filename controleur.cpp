@@ -133,7 +133,7 @@ void Controleur::commande(const QString& c){
                                         litAff.push(e);
                                     }
                         }
-                        litMng.removeLitterale(litAff.top());
+                        litMng.removeLitterale(v1);
 
                     }else{
                         litAff.setMessage("Erreur : pas assez d'arguments");
@@ -191,4 +191,5 @@ int estUnNombre(const QString s){
 
    return -1;
 }
+
 
