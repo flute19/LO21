@@ -92,21 +92,20 @@ void Controleur::commande(const QString& c){
                             }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
 
                         }
-//                        if (c == "$") {
-//                                NonComplexe& va1 = dynamic_cast<NonComplexe&>(val1);
-//                                NonComplexe& va2 = dynamic_cast<NonComplexe&>(val2);
+                        if (c == "$") {
+                                NonComplexe& va1 = dynamic_cast<NonComplexe&>(val1);
+                                NonComplexe& va2 = dynamic_cast<NonComplexe&>(val2);
 
 
-//                                Complexe* res = new Complexe(va1, va2);
+                                Complexe* res = new Complexe(va1, va2);
 
-//                                Litterale& e = litMng.addLitterale(res.toString());
-//                                litAff.push(e);
-//                            }else{
-//                                litAff.setMessage("erreur de type. Doit etre un entier.");
-//                            }
-//                        }
-                    litMng.removeLitterale(v1);
-                    litMng.removeLitterale(v2);
+                                Litterale& e = litMng.addLitterale(res->toString());
+                                litAff.push(e);
+                            }else{
+                                litAff.setMessage("erreur de type. Doit etre un entier.");
+                            }
+                        litMng.removeLitterale(v1);
+                        litMng.removeLitterale(v2);
 
                     } else{
                                 litAff.setMessage("Erreur : pas assez d'arguments");

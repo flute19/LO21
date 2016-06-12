@@ -11,7 +11,7 @@ class Reel;
 
 
 
-class Entier:public LitteraleCalculable {
+class Entier:public NonComplexe {
 int value;
 public:
     friend class Rationnel;

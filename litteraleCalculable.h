@@ -42,6 +42,9 @@ inline LitteraleCalculable & LitteraleCalculable::neg(){
     return opp;
 }
 
+class NonComplexe: public LitteraleCalculable{
+
+};
 
 
 

@@ -14,7 +14,8 @@ HEADERS += \
     controleur.h \
     rationnel.h \
     reel.h \
-    expression.h
+    expression.h \
+    complexe.h
 
 SOURCES += \
     main.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     litteralemanager.cpp \
     rationnel.cpp \
     reel.cpp \
-    expression.cpp
+    expression.cpp \
+    complexe.cpp
 
 FORMS +=

@@ -3,7 +3,11 @@
 
 #include "litterale.h"
 #include "calcexception.h"
-#include "pile.h"
+#include "item.h"
+#include "calc.h"
+#include "entier.h"
+#include "reel.h"
+#include "complexe.h"
 
 
 
