@@ -27,21 +27,64 @@ bool ok = true;
         break;
         case 2:
             if(ok){
-            if (nb == nbMax) agrandissementCapacite();
+                if (nb == nbMax) agrandissementCapacite();
 
-            QStringList l = v.split("/");
+                QStringList l = v.split("/");
 
-            lits[nb++] = new Rationnel(l.at(0).toInt(), l.at(1).toInt());
-            return *lits[nb-1];
+                lits[nb++] = new Rationnel(l.at(0).toInt(), l.at(1).toInt());
+                return *lits[nb-1];
             }
+        break;
         case 3:
             if (nb == nbMax) agrandissementCapacite();
             lits[nb++] = dynamic_cast<Litterale*>(new Expression(v));
             return *lits[nb-1];
         break;
+        case 4:
+            if(ok){
+            if (nb == nbMax) agrandissementCapacite();
+
+            QStringList l = v.split("$");
+            NonComplexe* re;
+            NonComplexe* im;
+
+            if(l.at(0).toInt()){
+                re = new Entier(l.at(0).toInt());
+            }else{
+                if(l.at(0).toFloat()){
+                    re = new Reel(l.at(0).toFloat());
+                }else{
+                    if(l.at(0).contains(QRegExp("([0-9]+)/([0-9]+)"))){
+                        QStringList l2 = l.at(0).split("/");
+                        re = new Rationnel(l2.at(0).toInt(), l2.at(1).toInt());
+                    }
+                }
+            }
+
+            if(l.at(1).toInt()){
+                im = new Entier(l.at(1).toInt());
+            }else{
+                if(l.at(1).toFloat()){
+                    im = new Reel(l.at(1).toFloat());
+                }else{
+                    if(l.at(1).contains(QRegExp("([0-9]+)/([0-9]+)"))){
+                        QStringList l2= l.at(1) .split("/");
+                        im = new Rationnel(l2.at(1).toInt(), l2.at(1).toInt());
+                    }
+                }
+            }
+
+            lits[nb++] = new Complexe(*re, *im);
+            return *lits[nb-1];
+            }
+        break;
         default: throw CalcException("Erreur, ceci n'est pas une litterale calculable.");
         break;
+
    }
+    Entier* e = new Entier();
+    Litterale& l = *e;
+    return l;
 }
 
 void LitteraleManager::removeLitterale(Litterale& e){

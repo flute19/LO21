@@ -66,6 +66,7 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
     }
     else{
         const Rationnel* ptRationnel=dynamic_cast<const Rationnel*>(&l);
+
         if (ptRationnel!=0){
             // Rationnel + Rationnel
             Entier n= Entier((num->getValue()*ptRationnel->getDen().getValue())+(den->getValue()*ptRationnel->getNum().getValue()));
@@ -78,12 +79,14 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
         }
         else {
             const Reel* ptReel=dynamic_cast<const Reel*>(&l);
+
             if (ptReel!=0){
                 //Rationnel + Reel
                 LitteraleCalculable& ref = ptReel->addition(*this);
                 return ref;
             }else{
                 const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+
                 if (ptExpression!=0){
                         // Rationnel + Expression
                         LitteraleCalculable& ref = ptExpression->addition(*this);

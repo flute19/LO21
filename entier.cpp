@@ -155,13 +155,13 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
 
                 else{
                 throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Entier* res = new Entier();
-                LitteraleCalculable& ref = *res;
-                return ref;
                 }
             }
         }
     }
+    Entier* res = new Entier();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 //------ Division Entiere & Modulo -----------
