@@ -3,7 +3,7 @@
 
 QString Expression::eval() const {
     if (value.isEmpty()){
-        return value;
+        //return value;
     }
     else{
 
@@ -15,70 +15,47 @@ QString Expression::eval() const {
            Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
            controleur->commande(QString(*it));*/
 
-        QString exp=value;
-        exp.remove(QChar(' '));
-        exp[0]='(';
-        exp[exp.size()]=')';
-        QString::Iterator it;
-        Pile* pile = new Pile();
-        LitteraleManager& litMng= LitteraleManager::getInstance();
-        for (it=exp.begin();it!=exp.end();it++){
-            if(estUnNombre(*it) || estUnOperateur(*it)){
-                if (estUnNombre(*it)){
-                    QString nb=*it;
-                    while (estUnNombre(*(++it))){
-                        nb+=*it;
-                    }
-                    pile->push(litMng.addLitterale(nb));
-                }
-                else {
-                    pile->push(litMng.addLitterale(*it));
-                }
+       // QString expr=value;
+       // expr.remove(QChar(' '));
+       // expr[0]='(';
+        //expr[expr.size()]=')';
+        //expr=InfixToPostfix(expr);
+        return "lol";
             }
-            else{
-                if(*it!='(' || *it!=')'){
-                    delete pile;
-                   // throw CalcException("Expression non conforme au format");
-                }
-                else
-                    if(*it==')'){
-
-                    }
-            }
-        }
-    }
-    return("'ça marche'");
+    return "erreur";
 }
 QString InfixToPostfix(QString exp){
     QStack<QChar> S;
     QString postfix="";
     for (int i=0;i<exp.length();i++){
         if (exp[i]==' ' || exp[i]==',') continue;
-        else if(estUnOperateur(QString(exp[i]))){
+        else
+            if(estUnOperateur(QString(exp[i]))){
             while (!S.empty() && S.top() != '(' && HasHigherPrecedence(S.top(),exp[i]))
             {
                 postfix+= S.top();
                 S.pop();
             }
             S.push(exp[i]);
-        }
-        else if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1){
-            postfix+=exp[i];
-        }
-        else if (exp[i] == '(')
-                {
-                    S.push(exp[i]);
+            }
+            else
+                if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1){
+                    postfix+=exp[i];
                 }
-
-                else if(exp[i] == ')')
-                {
-                    while(!S.empty() && S.top() !=  '(') {
-                        postfix += S.top();
-                        S.pop();
+                else
+                    if (exp[i] == '('){
+                        S.push(exp[i]);
                     }
-                    S.pop();
-                }
-                else (throw CalcException("Eval d'une expression non évaluable"));
+
+                    else
+                        if(exp[i] == ')'){
+                            while(!S.empty() && S.top() !=  '(') {
+                                postfix += S.top();
+                                S.pop();
+                            }
+                            S.pop();
+                        }
+                        //else (throw CalcException("Eval d'une expression non évaluable"));
         }
 
         while(!S.empty()) {
