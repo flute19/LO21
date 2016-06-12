@@ -20,7 +20,7 @@ public :
     Programme(const QString& s = "") : value(s){}
     inline QString toString() const{return value;}
     //operation unaire
-    QString eval() const;
+    QStringList eval() const;
 
     //data
 };

@@ -1,17 +1,8 @@
 #include "programme.h"
 
-
-QString Programme::eval() const{
+QStringList Programme::eval() const{
         QString expr=value;
+        expr.remove(QChar('['),Qt::CaseInsensitive).remove(QChar(']'),Qt::CaseInsensitive);
         QStringList listeLitterales = expr.split(" ");
-        QStringList::iterator it=listeLitterales.begin();
-        Pile *pile= new Pile();
-        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
-        while (it!=listeLitterales.end()){
-            controleur->commande(QString(*it));
-            it++;
-        }
-        QString res=pile->top().toString();
-
-        return res;
+        return listeLitterales;
 }

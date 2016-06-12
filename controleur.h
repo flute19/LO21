@@ -1,10 +1,13 @@
 #ifndef CONTROLEUR_H
 #define CONTROLEUR_H
+#include <QString>
 
 #include "include.h"
 #include "litteralemanager.h"
 #include "pile.h"
 #include "expression.h"
+#include "atome.h"
+#include "programme.h"
 
 //------- Class Forward ------------
 class LitteraleManager;

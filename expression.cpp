@@ -21,13 +21,13 @@ QString Expression::eval() const {
         expr=InfixToPostfix(expr);
         QStringList listeLitterales = expr.split(" ");
         QStringList::iterator it=listeLitterales.begin();
-        Pile *pile= new Pile();
-        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
+        Pile *stack= new Pile();
+        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*stack);
         while (it!=listeLitterales.end()){
             controleur->commande(QString(*it));
             it++;
         }
-        QString res=pile->top().toString();
+        QString res=stack->top().toString();
 
         return res;
             }

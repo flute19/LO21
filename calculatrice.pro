@@ -15,7 +15,10 @@ HEADERS += \
     rationnel.h \
     reel.h \
     expression.h \
-    complexe.h
+    complexe.h \
+    programme.h \
+    atome.h \
+    atomemanager.h
 
 SOURCES += \
     main.cpp \
@@ -29,6 +32,8 @@ SOURCES += \
     rationnel.cpp \
     reel.cpp \
     expression.cpp \
-    complexe.cpp
+    complexe.cpp \
+    programme.cpp \
+    atome.cpp
 
 FORMS +=

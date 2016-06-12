@@ -7,6 +7,7 @@
 class Pile;
 class Controleur;
 
+extern Pile* pile;
 //class declaration
 class QCalc : public QWidget{
 Q_OBJECT
