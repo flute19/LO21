@@ -172,14 +172,10 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
         }
         if (type == 1) {
             Entier* res = new Entier(value / ptEntier->getValue());
-            LitteraleCalculable& ref = *res;//spl->simplifier(res);
+            LitteraleCalculable& ref = *res;
             return ref;
         }
-        Rationnel* res = new Rationnel(value, ptEntier->getValue());
-        LitteraleCalculable& ref = *res;
-        return ref;
-    }
-    else{
+    }else{
         const Rationnel* ptRationnel = dynamic_cast<const Rationnel*>(&l);
 
         if (ptRationnel!= 0){

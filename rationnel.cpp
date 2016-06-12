@@ -188,12 +188,25 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
         if (ptRationnel != 0){
             // Rationnel / Rationnel
             Entier n = Entier((num->getValue() * ptRationnel->getDen().getValue()));
-            Entier d = Entier(den->getValue() * ptRationnel->getDen().getValue());
-            Rationnel* res = new Rationnel(n,d);
+            Entier d = Entier(den->getValue() * ptRationnel->getNum().getValue());
 
-         //   res->simplifier();
-            LitteraleCalculable& ref = *res;
-            return ref;
+
+            int type = simplifier(n,d);
+
+            if (type == 0){//non simplifiable
+                Rationnel* res = new Rationnel(n, d);
+
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+            if (type == 1) {
+                Entier* res = new Entier(n.getValue() / d.getValue());
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+
+//            LitteraleCalculable& ref = *res;
+//            return ref;
         }
         else {
             const Reel* ptReel = dynamic_cast<const Reel*>(&l);
