@@ -12,6 +12,7 @@ class Pile;
 
 //------- Controler declaration ----
 class Controleur {
+    friend class QCalc;
     LitteraleManager& litMng;
     Pile& litAff;
 public:

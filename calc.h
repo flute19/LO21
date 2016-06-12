@@ -42,6 +42,7 @@ QPushButton* add ;
 QPushButton* diff ;
 QPushButton* mult ;
 QPushButton* quotient ;
+QPushButton* raz;
 QPushButton* entree ;
 
 //--------- Interfaces creation--------------
@@ -77,10 +78,10 @@ void affPlus(){commande->insert("+");}
 void affMoins(){commande->insert("-");}
 void affEtoile(){commande->insert("*");}
 void affDiviser(){commande->insert("/");}
+void enter(){commande->returnPressed();}
+void remiseazero();
 
 }; //end of declaration
-
-
 
 
 #endif // CALC_H

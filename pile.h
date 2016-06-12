@@ -11,7 +11,6 @@
 //-------- class Forward -------------
 class Item;
 class Litterale;
-class Simplificator;
 
 class Pile : public QObject {
     Q_OBJECT

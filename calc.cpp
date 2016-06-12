@@ -57,6 +57,9 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     quotient = new QPushButton("/",this) ;
     connect(quotient, SIGNAL(clicked()),this,SLOT(affDiviser()));
     entree = new QPushButton("go",this);
+    connect(entree,SIGNAL(clicked()),this,SLOT(enter()));
+    raz=new QPushButton("RAZ",this);
+    connect(raz,SIGNAL(clicked()),this,SLOT(remiseazero()));
 
     opCol = new QGridLayout(this); //struc to place them
 
@@ -87,6 +90,7 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 
 
     //--- Extra Pad---
+    opCol->addWidget(raz);
     opCol->addWidget(entree);
     opCol->addWidget(add);
     opCol->addWidget(diff);
@@ -164,6 +168,13 @@ void QCalc::getNextCommande()
     commande->clear();
 }
 
+void QCalc::remiseazero(){
+    while(!pile->estVide()){
+        Litterale& v= controleur->litAff.top();
+        pile->pop();
+        controleur->litMng.removeLitterale(v);
+    }
+}
 
 
 
