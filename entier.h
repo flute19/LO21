@@ -10,15 +10,17 @@ class Rationnel;
 class Reel;
 
 
+
 class Entier:public LitteraleCalculable {
 int value;
 public:
+    friend class Rationnel;
     //object management
     Entier(int x=0):value(x){}
 
     //data
     int getValue()const{return value;}
-    inline QString toString() const;
+    QString toString()const;
 
     //operations binaires
     LitteraleCalculable& addition(const LitteraleCalculable &l) const;
@@ -26,20 +28,14 @@ public:
     LitteraleCalculable& mult(const LitteraleCalculable &l) const;
     LitteraleCalculable& quotient(const LitteraleCalculable &l) const;
 
-    Entier& div(Entier& e);
-    Entier& mod(Entier& e);
+    Entier& div(const Entier& e);
+    Entier& mod(const Entier& e);
 
 
     //opérations unaires
     LitteraleCalculable& oppose()const;
-
-
 };
 
-inline QString Entier::toString() const {
-    QString str;
-    str.setNum(value);
-    return str;
-}
+int simplifier(Entier a, Entier b);
 
 #endif // ENTIER_H

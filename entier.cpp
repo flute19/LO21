@@ -2,6 +2,12 @@
 
 /**Definition of Entier's method**/
 
+QString Entier::toString() const{
+    QString str;
+    str = QString::number(value);
+    return str;
+}
+
 //-----------------Operations ----------------------------
 
 // ----- Addition -----
@@ -21,7 +27,7 @@ LitteraleCalculable& Entier::addition(const LitteraleCalculable& l) const{
             Entier num = (value*ptRationnel->getDen().getValue()+ptRationnel->getNum().getValue());
             Entier den = (ptRationnel->getDen().getValue());
             Rationnel* res = new Rationnel(num,den);
-            res->simplifier();
+
             LitteraleCalculable& ref = *res;
             return ref;
         }
@@ -59,7 +65,7 @@ LitteraleCalculable& Entier::diff(const LitteraleCalculable& l) const{
             Entier num = (value*ptRationnel->getDen().getValue()-ptRationnel->getNum().getValue());
             Entier den = (ptRationnel->getDen().getValue());
             Rationnel* res = new Rationnel(num,den);
-            res->simplifier();
+
             LitteraleCalculable& ref = *res;
             return ref;
         }
@@ -98,11 +104,21 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
             // Entier * Rationnel
             Entier num = (value * ptRationnel->getNum().getValue());
             Entier den = (ptRationnel->getDen().getValue());
-            Rationnel* res = new Rationnel(num,den);
 
-            res->simplifier();
-            LitteraleCalculable& ref = *res;
-            return ref;
+            int type = simplifier(num, den);
+
+            if (type == 0){
+                Rationnel* res = new Rationnel(num,den);
+
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+            if (type == 1) {
+                Entier v = num.div(den);
+                Entier* res = new Entier(v.getValue());
+                LitteraleCalculable& ref = *res;//spl->simplifier(res);
+                return ref;
+            }
         }
         else {
             const Reel* ptReel = dynamic_cast<const Reel*>(&l);
@@ -122,13 +138,13 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
 }
 
 //------ Division Entiere & Modulo -----------
-Entier& Entier::div(Entier& e){
+Entier& Entier::div(const Entier& e){
     Entier* res = new Entier(value / e.getValue());
     Entier& ref = *res;
     return ref;
 }
 
-Entier& Entier::mod(Entier& e){
+Entier& Entier::mod(const Entier& e){
     int tamp = value / e.getValue();
     tamp = value - tamp * e.getValue();
 
@@ -146,7 +162,20 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
         // Entier / Entier
         if(ptEntier->getValue() == 0) throw CalcException("division par 0 impossible");
 
-        Entier* res = new Entier(value / ptEntier->getValue());
+        int type = simplifier(*this, *ptEntier);
+
+        if (type == 0){//non simplifiable
+            Rationnel* res = new Rationnel(value, ptEntier->getValue());
+
+            LitteraleCalculable& ref = *res;
+            return ref;
+        }
+        if (type == 1) {
+            Entier* res = new Entier(value / ptEntier->getValue());
+            LitteraleCalculable& ref = *res;//spl->simplifier(res);
+            return ref;
+        }
+        Rationnel* res = new Rationnel(value, ptEntier->getValue());
         LitteraleCalculable& ref = *res;
         return ref;
     }
@@ -161,7 +190,7 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
             Entier den = (ptRationnel->getNum().getValue());
             Rationnel* res = new Rationnel(num, den);
 
-            res->simplifier();
+           // res->simplifier();
             LitteraleCalculable& ref = *res;
             return ref;
         }
@@ -193,6 +222,19 @@ LitteraleCalculable& Entier::oppose()const{
     return ref;
 }
 
+// -------------------------------------------------------------------------
+//-------------------------- Fonction auxiliaire ---------------------------
+
+int simplifier(Entier a, Entier b){
+
+    Entier& test = a.mod(b);
+
+    if (test.getValue() == 0){
+        return 1;
+    } else return 0;
+}
 
 
-//end of file
+
+
+////end of file

@@ -40,6 +40,17 @@ Rationnel::Rationnel(int n, int d) {
     }
 }
 
+ QString Rationnel::toString() const {
+
+    QString str = num->Entier::toString();
+    str.append("/");
+
+    QString tamp = den->Entier::toString();
+    str.append(tamp);
+
+    return str;
+}
+
 //-----------------Operations binaires -------------------------
 
 // ----- Addition -----
@@ -59,7 +70,7 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
             Entier d= Entier(den->getValue()*ptRationnel->getDen().getValue());
             Rationnel* res= new Rationnel(n,d);
 
-            res->simplifier();
+            //res->simplifier();
             LitteraleCalculable& ref =*res;
             return ref;
         }
@@ -96,7 +107,7 @@ LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
             Entier d= Entier(den->getValue()*ptRationnel->getDen().getValue());
             Rationnel* res= new Rationnel(n,d);
 
-            res->simplifier();
+           // res->simplifier();
             LitteraleCalculable& ref =*res;
             return ref;
         }
@@ -134,7 +145,7 @@ LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
             Entier d = Entier(den->getValue() * ptRationnel->getDen().getValue());
             Rationnel* res = new Rationnel(n,d);
 
-            res->simplifier();
+           // res->simplifier();
             LitteraleCalculable& ref = *res;
             return ref;
         }
@@ -165,7 +176,7 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
         Entier d = (den->getValue() * ptEntier->getValue());
         Rationnel* res = new Rationnel(n, d);
 
-        res->simplifier();
+       // res->simplifier();
         LitteraleCalculable& ref = *res;
         return ref;
     }
@@ -178,7 +189,7 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
             Entier d = Entier(den->getValue() * ptRationnel->getDen().getValue());
             Rationnel* res = new Rationnel(n,d);
 
-            res->simplifier();
+         //   res->simplifier();
             LitteraleCalculable& ref = *res;
             return ref;
         }
@@ -211,20 +222,3 @@ LitteraleCalculable& Rationnel::oppose()const{
     return ref;
 }
 
-// -------------- Simplification ----------------
-Entier pgcd(const Entier& a, const Entier& b){
-        Entier x(a.getValue());
-        Entier y(b.getValue());
-        if ((y.getValue())==0){
-            return x;
-        }
-        else {
-            return pgcd(Entier(y.getValue()),Entier(x.getValue() % y.getValue()));
-        }
-}
-
-void Rationnel::simplifier() {
-   //     Entier pgcd = pgcd(getNum(),getDen());
-  //      num=num/pgcd;
- //       den=den/pgcd;
-}

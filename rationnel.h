@@ -9,8 +9,9 @@ class Reel;
 class Entier;
 
 class Rationnel:public LitteraleCalculable{
-const Entier* num;
-const Entier* den;
+ Entier* num;
+ Entier* den;
+
 public:
     //object management
     Rationnel(int n=0, int d=1);
@@ -20,7 +21,7 @@ public:
     //data
     const Entier& getNum()const{return *num;}
     const Entier& getDen()const{return *den;}
-    inline QString toString() const;
+    QString toString() const;
 
     //operations binaires
     LitteraleCalculable& addition(const LitteraleCalculable &l) const;
@@ -31,15 +32,20 @@ public:
     //operations unaires
     LitteraleCalculable& oppose() const;
 
-    void simplifier();
-
 };
 
-inline QString Rationnel::toString() const {
-    QString strnum,strden;
-    //strnum.setNum(num->getValue());
-    //strden.setNum(den->getValue());
-    return QString(strnum+"/"+strden);
-}
+//inline QString Rationnel::toString() const {
+//    //const Entier* n = Entier(num->getValue());
+//    QString str = number();
+//   //const Entier* pt = &n;
+
+
+//    //const int nu =pt->getValue();
+
+//   //const QString str = pt->toString();
+//    str.append("/");
+////    str.append(den->toString());
+//    return str;
+//}
 
 #endif // RATIONNEL_H

@@ -16,6 +16,7 @@ QLineEdit* commande;
 QVBoxLayout* couche;
 Pile* pile;
 Controleur* controleur;
+//Simplificator* spl;
 
 //--------- Button creation -----------------
 
