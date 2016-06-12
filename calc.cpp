@@ -114,7 +114,6 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     setLayout(couche);
 
     //-- pile treatment---
-    pile= new Pile();
     controleur = new Controleur(LitteraleManager::getInstance(), *pile);
 
    //can't rewrite windows message

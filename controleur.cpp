@@ -100,8 +100,6 @@ void Controleur::commande(const QString& c){
 
                                 Litterale& e = litMng.addLitterale(res->toString());
                                 litAff.push(e);
-                            }else{
-                                litAff.setMessage("erreur de type. Doit etre un entier.");
                             }
                         litMng.removeLitterale(v1);
                         litMng.removeLitterale(v2);
