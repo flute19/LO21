@@ -2,10 +2,6 @@
 #define PILE_H
 
 
-#include "item.h"
-#include "calc.h"
-#include "entier.h"
-#include "reel.h"
 #include "litteralemanager.h"
 #include "calcexception.h"
 #include "controleur.h"

@@ -9,8 +9,7 @@ class Entier;
 class Rationnel;
 
 
-class Reel:public LitteraleCalculable
-{
+class Reel:public NonComplexe{
 float value;
 public:
     //object management
