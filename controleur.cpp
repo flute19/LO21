@@ -72,9 +72,10 @@ void Controleur::commande(const QString& c){
 
                                 Litterale& e = litMng.addLitterale(res.toString());
                                 litAff.push(e);
-                            }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
-
+                            }else{
+                                litAff.setMessage("erreur de type. Doit etre un entier.");
                             }
+                        }
                         if (c == "DIV") {
                             bool ok = true;
                             if(ok//val1.toString.toInt(&ok)
@@ -90,10 +91,22 @@ void Controleur::commande(const QString& c){
                                 litAff.push(e);
                             }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
 
-                            litMng.removeLitterale(v1);
-                            litMng.removeLitterale(v2);
-
                         }
+//                        if (c == "$") {
+//                                NonComplexe& va1 = dynamic_cast<NonComplexe&>(val1);
+//                                NonComplexe& va2 = dynamic_cast<NonComplexe&>(val2);
+
+
+//                                Complexe* res = new Complexe(va1, va2);
+
+//                                Litterale& e = litMng.addLitterale(res.toString());
+//                                litAff.push(e);
+//                            }else{
+//                                litAff.setMessage("erreur de type. Doit etre un entier.");
+//                            }
+//                        }
+                    litMng.removeLitterale(v1);
+                    litMng.removeLitterale(v2);
 
                     } else{
                                 litAff.setMessage("Erreur : pas assez d'arguments");
@@ -114,7 +127,7 @@ void Controleur::commande(const QString& c){
                             litAff.push(e);
                         }
                         if (c == "EVAL"){
-                            Expression& exp=dynamic_cast<Expression&>(v1);
+                            Expression& exp = dynamic_cast<Expression&>(v1);
                                     if (!(exp.getValue().contains(QRegExp("^'([^']+)'$")))) litAff.setMessage("Erreur, Litterale non expression");
                                     else{
                                         litAff.pop();
@@ -142,7 +155,8 @@ void Controleur::commande(const QString& c){
 
 
 int getArite(QString c){
-    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "DIV" || c == "MOD"){
+    if (c == "+" || c == "-" || c == "*" || c == "/" || c == "DIV" || c == "MOD"
+            || c == "$"){
         return 2;
     }
     if (c == "NEG" || c == "EVAL"){
@@ -160,6 +174,8 @@ bool estUnOperateur(const QString s){
     if (s == "DIV") return true;
     if (s == "MOD") return true;
     if (s == "EVAL") return true;
+    if (s == "$") return true;
+
 
     return false;
 }
