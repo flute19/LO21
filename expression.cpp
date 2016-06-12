@@ -107,26 +107,53 @@ int HasHigherPrecedence(QChar op1, QChar op2)
 
 
 LitteraleCalculable& Expression::addition(const LitteraleCalculable& l)const{
+    if(l.toString()[0]=='\''){
+        Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"+"+l.toString().remove(0,1));
+        LitteraleCalculable& ref = *res;
+        return ref;
+    }
+    else{
     Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"+"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
+    }
 }
 LitteraleCalculable& Expression::diff(const LitteraleCalculable& l)const{
+    if(l.toString()[0]=='\''){
+        Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"-"+l.toString().remove(0,1));
+        LitteraleCalculable& ref = *res;
+        return ref;
+    }
+    else{
     Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"-"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
+    }
 }
 LitteraleCalculable& Expression::mult(const LitteraleCalculable& l)const{
+    if(l.toString()[0]=='\''){
+        Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")*("+l.toString().remove(l.toString().size()-1,1).remove(0,1)+")'");
+        LitteraleCalculable& ref = *res;
+        return ref;
+    }
+    else{
     Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")*"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
+    }
 }
 
 LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
+    if(l.toString()[0]=='\''){
+        Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")/("+l.toString().remove(l.toString().size()-1,1).remove(0,1)+")'");
+        LitteraleCalculable& ref = *res;
+        return ref;
+    }
+    else{
     Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")/"+l.toString()+"'");
-
     LitteraleCalculable& ref = *res;
     return ref;
+    }
 }
 
 //------------- Operateur unaires ----------

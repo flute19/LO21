@@ -31,10 +31,19 @@ LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Reel* res = new Reel();
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Reel + Expression
+                        LitteraleCalculable& ref = ptExpression->addition(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Reel* res = new Reel();
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -68,10 +77,19 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Reel* res = new Reel();
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Reel - Expression
+                        LitteraleCalculable& ref = ptExpression->diff(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Reel* res = new Reel();
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -105,10 +123,19 @@ LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref= *res;
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Reel* res = new Reel();
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Reel * Expression
+                        LitteraleCalculable& ref = ptExpression->mult(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Reel* res = new Reel();
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -152,10 +179,19 @@ LitteraleCalculable& Reel::quotient(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref= *res;
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Reel* res = new Reel();
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Reel / Expression
+                        LitteraleCalculable& ref = ptExpression->quotient(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Reel* res = new Reel();
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }

@@ -5,9 +5,11 @@
 #include "litteraleCalculable.h"
 #include "rationnel.h"
 #include "reel.h"
+#include "expression.h"
 
 class Rationnel;
 class Reel;
+class Expression;
 
 
 

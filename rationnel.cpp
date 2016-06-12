@@ -83,10 +83,19 @@ LitteraleCalculable& Rationnel::addition(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = ptReel->addition(*this);
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Rationnel* res = new Rationnel(0,1);
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Rationnel + Expression
+                        LitteraleCalculable& ref = ptExpression->addition(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Rationnel* res = new Rationnel(0,1);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -120,10 +129,19 @@ LitteraleCalculable& Rationnel::diff(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = ptReel->diff(*this);
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Rationnel* res = new Rationnel(0,1);
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Rationnel - Expression
+                        LitteraleCalculable& ref = ptExpression->diff(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Rationnel* res = new Rationnel(0,1);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -159,10 +177,19 @@ LitteraleCalculable& Rationnel::mult(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = ptReel->diff(*this);
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Rationnel* res = new Rationnel(0,1);
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Rationnel * Expression
+                        LitteraleCalculable& ref = ptExpression->mult(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Rationnel* res = new Rationnel(0,1);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
@@ -217,10 +244,19 @@ LitteraleCalculable& Rationnel::quotient(const LitteraleCalculable& l) const{
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Rationnel* res = new Rationnel(0,1);
-                LitteraleCalculable& ref = *res;
-                return ref;
+                const Expression* ptExpression=dynamic_cast<const Expression*>(&l);
+                if (ptExpression!=0){
+                        // Rationnel / Expression
+                        LitteraleCalculable& ref = ptExpression->quotient(*this);
+                        return ref;
+                   }
+
+                else{
+                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                    Rationnel* res = new Rationnel(0,1);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
             }
         }
     }
