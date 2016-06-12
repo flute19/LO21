@@ -104,16 +104,25 @@ void Controleur::commande(const QString& c){
                     if (litAff.taille()>=1) {
 
                         Litterale& v1 = litAff.top();
-                        litMng.removeLitterale(litAff.top());
-                        litAff.pop();
                         LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
                         if (c == "NEG"){
 
+                            litAff.pop();
                             LitteraleCalculable& res = val1.neg();
                             Litterale& e = litMng.addLitterale(res.toString());
                             litAff.push(e);
                         }
+                        if (c == "EVAL"){
+                            Expression& exp=dynamic_cast<Expression&>(v1);
+                                    if (!(exp.getValue().contains(QRegExp("^'([^']+)'$")))) litAff.setMessage("Erreur, Litterale non expression");
+                                    else{
+                                        litAff.pop();
+                                        Litterale& e = litMng.addLitterale(exp.eval());
+                                        litAff.push(e);
+                                    }
+                        }
+                        litMng.removeLitterale(litAff.top());
 
                     }else{
                         litAff.setMessage("Erreur : pas assez d'arguments");
@@ -136,7 +145,7 @@ int getArite(QString c){
     if (c == "+" || c == "-" || c == "*" || c == "/" || c == "DIV" || c == "MOD"){
         return 2;
     }
-    if (c == "NEG"){
+    if (c == "NEG" || c == "EVAL"){
         return 1;
     }
     return 0;
@@ -150,6 +159,7 @@ bool estUnOperateur(const QString s){
     if (s == "NEG") return true;
     if (s == "DIV") return true;
     if (s == "MOD") return true;
+    if (s == "EVAL") return true;
 
     return false;
 }

@@ -17,6 +17,7 @@ class Expression : public LitteraleCalculable{
     QString value;
 public :
     Expression(const QString& s = "") : value(s){}
+    QString getValue() const {return value;}
 
     //operation binaire
     LitteraleCalculable& addition(const LitteraleCalculable& l)const;
@@ -26,7 +27,7 @@ public :
 
     //operation unaire
     LitteraleCalculable& oppose() const;
-    void eval() const;
+    QString eval() const;
 
     //data
     inline QString toString() const{return value;}

@@ -1,7 +1,7 @@
 #include "expression.h"
 
 
-void Expression::eval() const {
+QString Expression::eval() const {
     if (value.isEmpty() | value.contains(QRegExp("[^0-9]")))
         throw CalcException("Impossible d'évaluer une expression vide");
     else{

@@ -4,6 +4,7 @@
 #include "include.h"
 #include "litteralemanager.h"
 #include "pile.h"
+#include "expression.h"
 
 //------- Class Forward ------------
 class LitteraleManager;
