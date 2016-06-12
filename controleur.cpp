@@ -26,13 +26,11 @@ void Controleur::commande(const QString& c){
                     if (litAff.taille()>=2) {
 
                         Litterale& v2 = litAff.top();
-                        litMng.removeLitterale(litAff.top());
                         litAff.pop();
                         LitteraleCalculable& val2 = dynamic_cast<LitteraleCalculable&>(v2);
 
 
                         Litterale& v1 = litAff.top();
-                        litMng.removeLitterale(litAff.top());
                         litAff.pop();
                         LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
@@ -91,6 +89,9 @@ void Controleur::commande(const QString& c){
                                 Litterale& e = litMng.addLitterale(res.toString());
                                 litAff.push(e);
                             }else{ litAff.setMessage("erreur de type. Doit etre un entier.");}
+
+                            litMng.removeLitterale(v1);
+                            litMng.removeLitterale(v2);
 
                         }
 
@@ -162,7 +163,7 @@ int estUnNombre(const QString s){
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
   // if(s.contains(&rx)) return 2;
-   if (s.contains(QRegExp("^'([^']+)'$"))) return 3;
+   if(s.contains(QRegExp("^'([^']+)'$"))) return 3;
 
 
    return -1;

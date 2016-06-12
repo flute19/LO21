@@ -3,6 +3,8 @@
 
 #include <QTextStream>
 #include <QString>
+#include <QStack>
+#include <QChar>
 
 #include "litteraleCalculable.h"
 #include "controleur.h"
@@ -30,6 +32,9 @@ public :
     inline QString toString() const{return value;}
 };
 
+QString InfixToPostfix(QString exp);
+int HasHigherPrecedence(QChar op1, QChar op2);
+int GetOperatorWeight(QChar op);
 
 
 

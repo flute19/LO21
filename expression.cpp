@@ -2,7 +2,7 @@
 
 
 void Expression::eval() const {
-    if (value.isEmpty())
+    if (value.isEmpty() | value.contains(QRegExp("[^0-9]")))
         throw CalcException("Impossible d'évaluer une expression vide");
     else{
 
@@ -46,6 +46,73 @@ void Expression::eval() const {
             }
         }
     }
+}
+QString InfixToPostfix(QString exp){
+    QStack<QChar> S;
+    QString postfix="";
+    for (int i=0;i<exp.length();i++){
+        if (exp[i]==' ' || exp[i]==',') continue;
+        else if(estUnOperateur(QString(exp[i]))){
+            while (!S.empty() && S.top() != '(' && HasHigherPrecedence(S.top(),exp[i]))
+            {
+                postfix+= S.top();
+                S.pop();
+            }
+            S.push(exp[i]);
+        }
+        else if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1){
+            postfix+=exp[i];
+        }
+        else if (exp[i] == '(')
+                {
+                    S.push(exp[i]);
+                }
+
+                else if(exp[i] == ')')
+                {
+                    while(!S.empty() && S.top() !=  '(') {
+                        postfix += S.top();
+                        S.pop();
+                    }
+                    S.pop();
+                }
+                else (throw CalcException("Eval d'une expression non évaluable"));
+        }
+
+        while(!S.empty()) {
+                postfix += S.top();
+                S.pop();
+        }
+
+        return postfix;
+}
+
+int GetOperatorWeight(char op)
+{
+    int weight = -1;
+    switch(op)
+    {
+    case '+':
+    case '-':
+        weight = 1;
+    case '*':
+    case '/':
+        weight = 2;
+    case '$':
+        weight = 3;
+    }
+    return weight;
+}
+
+int HasHigherPrecedence(QChar op1, QChar op2)
+{
+    int op1Weight = GetOperatorWeight(op1.toLatin1());
+    int op2Weight = GetOperatorWeight(op2.toLatin1());
+
+    // If operators have equal precedence, return true if they are left associative.
+    // if operator is left-associative, left one should be given priority.
+
+    return op1Weight > op2Weight ?  true: false;
 }
 
 
