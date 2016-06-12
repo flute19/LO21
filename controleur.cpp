@@ -114,11 +114,11 @@ void Controleur::commande(const QString& c){
                             litAff.push(e);
                         }
                         if (c == "EVAL"){
-                            Expression& exp=dynamic_cast<Expression&>(v1);
-                                    if (!(exp.getValue().contains(QRegExp("^'([^']+)'$")))) litAff.setMessage("Erreur, Litterale non expression");
+                            Expression* exp=dynamic_cast<Expression*>(&val1);
+                                    if (!(exp)) litAff.setMessage("Erreur, Litterale non expression");
                                     else{
                                         litAff.pop();
-                                        Litterale& e = litMng.addLitterale(exp.eval());
+                                        Litterale& e = litMng.addLitterale(exp->eval());
                                         litAff.push(e);
                                     }
                         }

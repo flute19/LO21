@@ -2,8 +2,9 @@
 
 
 QString Expression::eval() const {
-    if (value.isEmpty() | value.contains(QRegExp("[^0-9]")))
-        throw CalcException("Impossible d'évaluer une expression vide");
+    if (value.isEmpty()){
+        return value;
+    }
     else{
 
         // On sépare les éléments de l'expression en enlevant les espaces
@@ -37,7 +38,7 @@ QString Expression::eval() const {
             else{
                 if(*it!='(' || *it!=')'){
                     delete pile;
-                    throw CalcException("Expression non conforme au format");
+                   // throw CalcException("Expression non conforme au format");
                 }
                 else
                     if(*it==')'){
@@ -46,6 +47,7 @@ QString Expression::eval() const {
             }
         }
     }
+    return("'ça marche'");
 }
 QString InfixToPostfix(QString exp){
     QStack<QChar> S;
@@ -117,23 +119,23 @@ int HasHigherPrecedence(QChar op1, QChar op2)
 
 
 LitteraleCalculable& Expression::addition(const LitteraleCalculable& l)const{
-    Expression* res = new Expression(value+"+"+l.toString());
+    Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"+"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
 }
 LitteraleCalculable& Expression::diff(const LitteraleCalculable& l)const{
-    Expression* res = new Expression(value +"-"+ l.toString());
+    Expression* res = new Expression(getValue().remove(getValue().size()-1,1)+"-"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
 }
 LitteraleCalculable& Expression::mult(const LitteraleCalculable& l)const{
-    Expression* res = new Expression(value+"*"+l.toString());
+    Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")*"+l.toString()+"'");
     LitteraleCalculable& ref = *res;
     return ref;
 }
 
 LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
-    Expression* res = new Expression(value + " " + l.toString() + " /");
+    Expression* res = new Expression("'("+getValue().remove(getValue().size()-1,1).remove(0,1)+")/"+l.toString()+"'");
 
     LitteraleCalculable& ref = *res;
     return ref;
