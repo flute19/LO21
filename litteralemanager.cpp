@@ -22,7 +22,7 @@ Litterale& LitteraleManager::addLitterale(QString v){
             lits[nb++] = new Reel(v.toFloat());
             return *lits[nb-1];
         break;
-        case 2:
+        case 3:
             if (nb == nbMax) agrandissementCapacite();
             lits[nb++] = dynamic_cast<Litterale*>(new Expression(v));
             return *lits[nb-1];

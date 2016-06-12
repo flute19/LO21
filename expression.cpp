@@ -7,12 +7,43 @@ void Expression::eval() const {
     else{
 
         // On sépare les éléments de l'expression en enlevant les espaces
-        QStringList listeLitterales = value.split(" ");
+        /*QStringList listeLitterales = value.split(" ");
         QStringList::iterator it;
         Pile *pile = new Pile();
         for (it=listeLitterales.begin();it!=listeLitterales.end();it++){
            Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
-           controleur->commande(QString(*it));
+           controleur->commande(QString(*it));*/
+
+        QString exp=value;
+        exp.remove(QChar(' '));
+        exp[0]='(';
+        exp[exp.size()]=')';
+        QString::Iterator it;
+        Pile* pile = new Pile();
+        LitteraleManager& litMng= LitteraleManager::getInstance();
+        for (it=exp.begin();it!=exp.end();it++){
+            if(estUnNombre(*it) || estUnOperateur(*it)){
+                if (estUnNombre(*it)){
+                    QString nb=*it;
+                    while (estUnNombre(*(++it))){
+                        nb+=*it;
+                    }
+                    pile->push(litMng.addLitterale(nb));
+                }
+                else {
+                    pile->push(litMng.addLitterale(*it));
+                }
+            }
+            else{
+                if(*it!='(' || *it!=')'){
+                    delete pile;
+                    throw CalcException("Expression non conforme au format");
+                }
+                else
+                    if(*it==')'){
+
+                    }
+            }
         }
     }
 }

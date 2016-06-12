@@ -13,7 +13,10 @@ void Controleur::commande(const QString& c){
            //if(c[0]==QChar('\'') && c[c.size()]==QChar('\'')){
                 litAff.push(litMng.addLitterale(c));
            // }
-        break;
+            break;
+        case 3:
+            litAff.push(litMng.addLitterale(c));
+            break;
         case -1:
         if (estUnOperateur(c)){
             int type = getArite(c);
@@ -156,10 +159,10 @@ int estUnNombre(const QString s){
    bool ok = false;
   // QRegExp rx("[/]"); //rationnel
 
-
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
   // if(s.contains(&rx)) return 2;
+   if (s.contains(QRegExp("^'([^']+)'$"))) return 3;
 
 
    return -1;
