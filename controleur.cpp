@@ -185,8 +185,8 @@ int estUnNombre(const QString s){
 
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
+   if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //au dessus de 2 car '4/3' évalué comme un rationnel
    if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;
-   if(s.contains(QRegExp("^'([^']+)'$"))) return 3;
 
 
    return -1;
