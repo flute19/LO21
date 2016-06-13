@@ -52,17 +52,25 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
 
     add = new QPushButton("+",this) ;
  //   connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
-    connect(add, SIGNAL(clicked()),this,SLOT(getNextCommande()));
+    connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
     diff = new QPushButton("-",this);
-    connect(diff, SIGNAL(clicked()),this,SLOT(getNextCommande()));
+    connect(diff, SIGNAL(clicked()),this,SLOT(affMoins()));
     mult = new QPushButton("*",this);
-    connect(mult, SIGNAL(clicked()),this,SLOT(getNextCommande()));
+    connect(mult, SIGNAL(clicked()),this,SLOT(affEtoile()));
     quotient = new QPushButton("/",this) ;
-    connect(quotient, SIGNAL(clicked()),this,SLOT(getNextCommande()));
+    connect(quotient, SIGNAL(clicked()),this,SLOT(affDiviser()));
     entree = new QPushButton("go",this);
     connect(entree,SIGNAL(clicked()),this,SLOT(enter()));
-    raz=new QPushButton("RAZ",this);
+    raz = new QPushButton("RAZ",this);
     connect(raz,SIGNAL(clicked()),this,SLOT(remiseazero()));
+    neg = new QPushButton("NEG",this);
+    connect(neg,SIGNAL(clicked()),this,SLOT(affNeg()));
+    re = new QPushButton("RE",this);
+    connect(re,SIGNAL(clicked()),this,SLOT(affRe()));
+    im = new QPushButton("IM",this);
+    connect(im,SIGNAL(clicked()),this,SLOT(affIm()));
+    espace = new QPushButton("espace",this);
+    connect(espace,SIGNAL(clicked()),this,SLOT(affEspace()));
 
     opCol = new QGridLayout(this); //struc to place them
 
@@ -88,6 +96,10 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     grille->addWidget(point,3,1);
     grille->addWidget(dollar,3,2);
 
+    grille->addWidget(neg,4,2);
+    grille->addWidget(espace,4,0);
+
+
     grille->setVerticalSpacing(0.5);
     grille->setHorizontalSpacing(0.5);
 
@@ -99,6 +111,8 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     opCol->addWidget(diff);
     opCol->addWidget(mult);
     opCol->addWidget(quotient);
+    opCol->addWidget(im);
+    opCol->addWidget(re);
 
     //--- main block--
     blockP->addLayout(grille);

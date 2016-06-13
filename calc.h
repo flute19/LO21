@@ -45,6 +45,13 @@ QPushButton* mult ;
 QPushButton* quotient ;
 QPushButton* raz;
 QPushButton* entree ;
+QPushButton* espace ;
+QPushButton* re ;
+QPushButton* im;
+QPushButton* neg;
+
+
+
 
 //--------- Interfaces creation--------------
 QHBoxLayout* blockP;
@@ -81,6 +88,10 @@ void affDiviser(){commande->insert("/");}
 void enter(){commande->returnPressed();}
 void remiseazero();
 
+void affNeg(){commande->insert("NEG");}
+void affIm(){commande->insert("IM");}
+void affRe(){commande->insert("RE");}
+void affEspace(){commande->insert(" ");}
 }; //end of declaration
 
 
