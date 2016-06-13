@@ -33,4 +33,5 @@ bool estUnOperateur(const QString s);
 int estUnNombre(const QString s);
 int getArite(QString c);
 
+
 #endif // INCLUDE_H

@@ -25,4 +25,6 @@ public:
 
 };
 
+bool checkDiv(const LitteraleCalculable& val2);
+
 #endif // CONTROLEUR_H
