@@ -30,6 +30,7 @@ void Controleur::commande(const QString& s){
 
     for(int i = 0; i < saisie.size(); i++){
         QString c = saisie.at(i);
+
         switch (estUnNombre(c)){
             case 0:
                 litAff.push(litMng.addLitterale(c));
@@ -79,10 +80,17 @@ void Controleur::commande(const QString& s){
                                 litAff.push(e);
                             }
                             if (c == "/") {
-                                    LitteraleCalculable& res = val1 / val2;
 
-                                    Litterale& e = litMng.addLitterale(res.toString());
-                                    litAff.push(e);
+//                                    bool ok = checkDiv(val2);
+//                                    if(ok) litAff.setMessage("ok");
+//                                    if(ok){
+                                        LitteraleCalculable& res = val1 / val2;
+
+                                        Litterale& e = litMng.addLitterale(res.toString());
+//                                        litAff.pop();
+//                                        litAff.pop();
+                                        litAff.push(e);
+//                                    }else litAff.setMessage("erreur : division par 0 impossible");
 
                                 }
                             if (c == "MOD") {//s'applique uniquement aux entiers
@@ -241,4 +249,31 @@ int estUnNombre(const QString s){
    return -1;
 }
 
+bool checkDiv(const LitteraleCalculable& val2){
 
+    const Entier* ptEntier = dynamic_cast<const Entier*>(&val2) ;
+
+    if(ptEntier->getValue() == 0) return false;
+    else{
+        const Rationnel* ptRa = dynamic_cast<const Rationnel*>(&val2) ;
+
+        if(ptRa->getNum().getValue() == 0) return false;
+        else{
+            const Reel* ptReel = dynamic_cast<const Reel*>(&val2) ;
+
+            if(ptReel->getValue() == 0) return false;
+            else{
+                const Complexe* ptCo = dynamic_cast<const Complexe*>(&val2) ;
+
+                const Entier* ptEn2 = dynamic_cast<const Entier*>(&ptCo->getRe()) ;
+                const Rationnel* ptRa2 = dynamic_cast<const Rationnel*>(&ptCo->getRe()) ;
+                const Reel* ptRe2 = dynamic_cast<const Reel*>(&ptCo->getRe()) ;
+
+                if(ptEn2 != 0 && ptEn2->getValue() == 0) return false;
+                if(ptRe2 != 0 && ptRe2->getValue() == 0) return false;
+                if(ptRa2 != 0 && ptRa2->getNum().getValue() == 0) return false;
+            }
+        }
+    }
+    return true;
+}

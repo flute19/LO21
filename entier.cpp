@@ -199,7 +199,7 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
 
     if (ptEntier != 0){
         // Entier / Entier
-        if(ptEntier->getValue() == 0) throw CalcException("division par 0 impossible");
+        //if(ptEntier->getValue() == 0)
 
         int type = simplifier(*this, *ptEntier);
 
