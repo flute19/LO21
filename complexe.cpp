@@ -1001,7 +1001,21 @@ LitteraleCalculable& Complexe::oppose() const{
 
 }
 
+//--- Re ---
+const LitteraleCalculable& Complexe::partieReel()const{
 
+    const NonComplexe* res = &this->getRe();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+//--- Im ---
+const LitteraleCalculable& Complexe::partieIm()const{
+
+    const NonComplexe* res = &this->getIm();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
 
 
 

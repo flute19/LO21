@@ -27,8 +27,12 @@ public:
     inline LitteraleCalculable& neg();
     virtual LitteraleCalculable& oppose()const =0;
 
+    virtual const LitteraleCalculable& partieReel() const =0;
+    virtual const LitteraleCalculable& partieIm() const =0;
+
     //data
     virtual QString toString() const=0;
+
 
 };
 

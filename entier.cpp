@@ -267,11 +267,29 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
 }
 
 //------------- Operation unaires------------
+//--- neg ----
 LitteraleCalculable& Entier::oppose()const{
     Entier* res = new Entier(- value);
     LitteraleCalculable& ref = *res;
     return ref;
 }
+
+//---- Re ---
+const LitteraleCalculable& Entier::partieReel() const {
+
+    const Entier* res = this;
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+//--- im ---
+const LitteraleCalculable& Entier::partieIm() const {
+
+    Entier* res = new Entier();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
 
 // -------------------------------------------------------------------------
 //-------------------------- Fonction auxiliaire ---------------------------

@@ -157,6 +157,7 @@ LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
 }
 
 //------------- Operateur unaires ----------
+//--- neg ---
 LitteraleCalculable& Expression::oppose() const{
     QString s = "-("+value;
     s.append(")");
@@ -165,3 +166,20 @@ LitteraleCalculable& Expression::oppose() const{
     LitteraleCalculable& ref = *res;
     return ref;
 }
+
+//--- Re---
+const LitteraleCalculable& Expression::partieReel() const {
+
+    const Expression* res = this;
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+//--- im ---
+const LitteraleCalculable& Expression::partieIm() const {
+
+    Entier* res = new Entier();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
