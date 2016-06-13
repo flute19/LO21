@@ -189,10 +189,11 @@ void Controleur::commande(const QString& s){
 
                     default: break;
                    }
+                litAff.setMessage("Erreur: Commande inconnue");
             }
             default: break;
         }
-        litAff.setMessage("Erreur: Commande inconnue");
+
     }
 }
 
