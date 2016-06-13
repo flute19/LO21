@@ -28,6 +28,9 @@ public :
     //operation unaire
     LitteraleCalculable& oppose() const;
     QString eval() const;
+    const LitteraleCalculable& partieReel() const ;
+    const LitteraleCalculable& partieIm() const;
+
 
     //data
     inline QString toString() const{return value;}

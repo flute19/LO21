@@ -289,3 +289,18 @@ LitteraleCalculable& Rationnel::oppose()const{
     return ref;
 }
 
+//--- re ---
+const LitteraleCalculable& Rationnel::partieReel() const {
+
+    const Rationnel* res = this;
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+//--- im ---
+const LitteraleCalculable& Rationnel::partieIm() const {
+
+    Entier* res = new Entier();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}

@@ -17,6 +17,7 @@ class Entier:public NonComplexe {
 int value;
 public:
     friend class Rationnel;
+
     //object management
     Entier(int x=0):value(x){}
 
@@ -36,6 +37,9 @@ public:
 
     //opérations unaires
     LitteraleCalculable& oppose()const;
+   const LitteraleCalculable& partieReel() const;
+   const LitteraleCalculable& partieIm()const;
+
 };
 
 int simplifier(Entier a, Entier b);

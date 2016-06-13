@@ -217,4 +217,21 @@ LitteraleCalculable& Reel::oppose()const{
     return ref;
 }
 
+//--- re ---
+const LitteraleCalculable& Reel::partieReel() const {
+
+    const Reel* res = this;
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+//--- im ---
+const LitteraleCalculable& Reel::partieIm() const {
+
+    Entier* res = new Entier();
+    const LitteraleCalculable& ref = *res;
+    return ref;
+}
+
+
 //end of file

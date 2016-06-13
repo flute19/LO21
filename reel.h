@@ -27,6 +27,9 @@ public:
 
     //operations unaires
     LitteraleCalculable& oppose() const;
+    const LitteraleCalculable& partieReel() const ;
+    const LitteraleCalculable& partieIm()const;
+
 
 };
 
