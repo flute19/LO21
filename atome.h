@@ -7,7 +7,7 @@
 
 class Litterale;
 
-class Atome : public Litterale {
+class Atome : public Litterale{ //: public Litterale {
     QString id;
     Litterale* value;
 public:

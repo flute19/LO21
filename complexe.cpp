@@ -955,50 +955,169 @@ LitteraleCalculable& Complexe::quotient(const LitteraleCalculable &l) const{
 //------------------- Operateur unaire ----------------------
 //operations unaires
 LitteraleCalculable& Complexe::oppose() const{
-//    const NonComplexe& r31 = this->getIm();
-//    const Entier* ptEntier3 = dynamic_cast<const Entier*>(&r31);
-//    if (ptEntier3 != 0){//entier en partie imaginaire
 
-//        const Entier& v2 = *ptEntier3;
-//        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose()));
+        const NonComplexe& r2 = this->getRe();
+        const Entier* ptEntier2 = dynamic_cast<const Entier*>(&r2);
+
+        if (ptEntier2 != 0){
+            // Entier en partie reelle
+
+            const NonComplexe& r31 = this->getIm();
+            const Entier* ptEntier3 = dynamic_cast<const Entier*>(&r31);
+
+            if (ptEntier3 != 0){//entier en partie imaginaire
+
+                const Entier& v1 = *ptEntier2;
+                const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                const Entier& v2 = *ptEntier3;
+                const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                Complexe* res = new Complexe(r, i);
+                LitteraleCalculable& ref = *res;
+                return ref;
+
+            }
+            const NonComplexe& r32 = this->getIm();
+            const Reel* ptRe3 = dynamic_cast<const Reel*>(&r32);
+
+            if (ptRe3 != 0){//reel en partie imaginaire
+
+                const Entier& v1 = *ptEntier2;
+                const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                const Reel& v2 = *ptRe3;
+                const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                Complexe* res = new Complexe(r, i);
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+            const NonComplexe& r33 = this->getIm();
+            const Rationnel* ptRa3 = dynamic_cast<const Rationnel*>(&r33);
+
+            if (ptRa3 != 0){//rationnel en partie imaginaire
+
+                const Entier& v1 = *ptEntier2;
+                const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                const Rationnel& v2 = *ptRa3;
+                const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                Complexe* res = new Complexe(r, i);
+                LitteraleCalculable& ref = *res;
+                return ref;
+            }
+        }
+        else{
+            const NonComplexe& r2 = this->getRe();
+            const Rationnel* ptRationnel2 = dynamic_cast<const Rationnel*>(&r2);
+
+            if (ptRationnel2!= 0){
+                // Complexe + Rationnel en partie reelle
+
+                const NonComplexe& r31 = this->getIm();
+                const Entier* ptEntier3 = dynamic_cast<const Entier*>(&r31);
+                if (ptEntier3 != 0){//entier en partie imaginaire
+
+                    const Rationnel& v1 = *ptRationnel2;
+                    const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                    const Entier& v2 = *ptEntier3;
+                    const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                    Complexe* res = new Complexe(r, i);
+
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
+                const NonComplexe& r32 = this->getIm();
+                const Reel* ptRe3 = dynamic_cast<const Reel*>(&r32);
+                if (ptRe3 != 0){//reel en partie imaginaire
+
+                    const Rationnel& v1 = *ptRationnel2;
+                    const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                    const Reel& v2 = *ptRe3;
+                    const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                    Complexe* res = new Complexe(r, i);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+                }
+                const NonComplexe& r33 = this->getIm();
+                const Rationnel* ptRa3 = dynamic_cast<const Rationnel*>(&r33);
+
+                if (ptRa3 != 0){//rationnel en partie imaginaire
+
+                    const Rationnel& v1 = *ptRationnel2;
+                    const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                    const Rationnel& v2 = *ptRa3;
+                    const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                    Complexe* res = new Complexe(r, i);
+                    LitteraleCalculable& ref = *res;
+                    return ref;
+               }
+            }else {
+                const NonComplexe& r2 = this->getRe();
+                const Reel* ptReel2 = dynamic_cast<const Reel*>(&r2);
+
+                if (ptReel2 != 0){
+                    // Complexe + Reel en partie reelle
 
 
-//        LitteraleCalculable& ref = *res;
-//        return ref;
-//    }
-//    const NonComplexe& r32 = ptCo->getIm();
-//    const Reel* ptRe3 = dynamic_cast<const Reel*>(&r32);
-//    if (ptRe3 != 0){//reel en partie imaginaire
+                    const NonComplexe& r31 = this->getIm();
+                    const Entier* ptEntier3 = dynamic_cast<const Entier*>(&r31);
+                    if (ptEntier3 != 0){//entier en partie imaginaire
 
-//        const Rationnel& v1 = *ptRationnel2;
-//        const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.mult(*re));
+                        const Reel& v1 = *ptReel2;
+                        const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
 
-//        const Reel& v2 = *ptRe3;
-//        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.mult(*im));
+                        const Entier& v2 = *ptEntier3;
+                        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
 
-//        Complexe* res = new Complexe(r, i);
-//        LitteraleCalculable& ref = *res;
-//        return ref;
-//    }
-//    const NonComplexe& r33 = ptCo->getIm();
-//    const Rationnel* ptRa3 = dynamic_cast<const Rationnel*>(&r33);
+                        Complexe* res = new Complexe(r, i);
+                        LitteraleCalculable& ref = *res;
+                        return ref;
+                    }
+                    const NonComplexe& r32 = this->getIm();
+                    const Reel* ptRe3 = dynamic_cast<const Reel*>(&r32);
 
-//    if (ptRa3 != 0){//rationnel en partie imaginaire
+                    if (ptRe3 != 0){//reel en partie imaginaire
 
-//        const Rationnel& v1 = *ptRationnel2;
-//        const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.mult(*re));
+                        const Reel& v1 = *ptReel2;
+                        const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.mult(*re));
 
-//        const Rationnel& v2 = *ptRa3;
-//        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.mult(*im));
+                        const Reel& v2 = *ptRe3;
+                        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.addition(*im));
 
-//        Complexe* res = new Complexe(r, i);
-//        LitteraleCalculable& ref = *res;
-    Entier* res = new Entier();
-        LitteraleCalculable& ref = *res;
-    return ref;
-//   }
+                        Complexe* res = new Complexe(r, i);
+                        LitteraleCalculable& ref = *res;
+                        return ref;
+                    }
+                    const NonComplexe& r33 = this->getIm();
+                    const Rationnel* ptRa3 = dynamic_cast<const Rationnel*>(&r33);
 
+                    if (ptRa3 != 0){//rationnel en partie imaginaire
 
+                        const Reel& v1 = *ptReel2;
+                        const NonComplexe& r = dynamic_cast <const NonComplexe&> (v1.oppose());
+
+                        const Rationnel& v2 = *ptRa3;
+                        const NonComplexe& i = dynamic_cast <const NonComplexe&> (v2.oppose());
+
+                        Complexe* res = new Complexe(r, i);
+                        LitteraleCalculable& ref = *res;
+                        return ref;
+                    }
+                }
+            }
+        }
+        Entier* res = new Entier();
+            LitteraleCalculable& ref = *res;
+        return ref;
 }
 
 //--- Re ---
