@@ -3,16 +3,23 @@
 
 #include<QString>
 #include "litterale.h"
+#include "litteralemanager.h"
 
-class Atome : public Litterale{
+class Litterale;
+
+class Atome {
     QString id;
     Litterale* value;
 public:
     Atome(QString i="",Litterale* v=nullptr):id(i),value(v){}
+    ~Atome(){}
     QString getId() const{return id;}
     Litterale* getValue() const{return value;}
-    QString toString(){return value->toString();}
+    inline QString toString();
     void setValue(Litterale* l){value=l;}
 };
+inline QString Atome::toString(){
+    return value->toString();
+}
 
 #endif // ATOME_H

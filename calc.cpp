@@ -2,8 +2,10 @@
 #include <algorithm>
 #include "calc.h"
 #include "litteralemanager.h"
+#include "atomemanager.h"
 
 LitteraleManager::Handler LitteraleManager::handler=LitteraleManager::Handler();
+AtomeManager::Handlerat AtomeManager::handleratom=AtomeManager::Handlerat();
 
 QCalc::QCalc(QWidget* parent):QWidget (parent)
 {
@@ -114,7 +116,7 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     setLayout(couche);
 
     //-- pile treatment---
-    controleur = new Controleur(LitteraleManager::getInstance(), *pile);
+    controleur = new Controleur(LitteraleManager::getInstance(), *pile,AtomeManager::getInstanceAtome());
 
    //can't rewrite windows message
     message->setReadOnly(true);//can't
