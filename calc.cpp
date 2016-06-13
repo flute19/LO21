@@ -49,13 +49,13 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     //---- Operators ----
 
     add = new QPushButton("+",this) ;
-    connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
+    connect(add, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     diff = new QPushButton("-",this);
-    connect(diff, SIGNAL(clicked()),this,SLOT(affMoins()));
+    connect(diff, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     mult = new QPushButton("*",this);
-    connect(mult, SIGNAL(clicked()),this,SLOT(affEtoile()));
+    connect(mult, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     quotient = new QPushButton("/",this) ;
-    connect(quotient, SIGNAL(clicked()),this,SLOT(affDiviser()));
+    connect(quotient, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     entree = new QPushButton("go",this);
     connect(entree,SIGNAL(clicked()),this,SLOT(enter()));
     raz=new QPushButton("RAZ",this);

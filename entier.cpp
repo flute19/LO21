@@ -44,17 +44,21 @@ LitteraleCalculable& Entier::addition(const LitteraleCalculable& l) const{
                         // Entier + Expression
                         LitteraleCalculable& ref = ptExpression->addition(*this);
                         return ref;
-                   }
-
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Entier* res = new Entier();
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                        if (ptComplexe!=0){
+                                // Entier / Complexe
+                                LitteraleCalculable& ref = ptComplexe->addition(*this);
+                                return ref;
+                        }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Entier* res = new Entier();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Soustraction -----
@@ -91,17 +95,21 @@ LitteraleCalculable& Entier::diff(const LitteraleCalculable& l) const{
                         // Entier + Expression
                         LitteraleCalculable& ref = ptExpression->diff(*this);
                         return ref;
-                   }
-
-                else{
-                    throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                    Entier* res = new Entier();
-                    LitteraleCalculable& ref = *res;
-                    return ref;
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                    if (ptComplexe!=0){
+                            // Entier / Complexe
+                            LitteraleCalculable& ref = ptComplexe->diff(*this);
+                            return ref;
+                    }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Entier* res = new Entier();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 // ----- Multiplication -----
@@ -151,14 +159,18 @@ LitteraleCalculable& Entier::mult(const LitteraleCalculable& l) const{
                         // Entier * Expression
                         LitteraleCalculable& ref = ptExpression->mult(*this);
                         return ref;
-                   }
-
-                else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
+                   }else{
+                    const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                    if (ptComplexe!=0){
+                            // Entier * Complexe
+                            LitteraleCalculable& ref = ptComplexe->mult(*this);
+                            return ref;
+                    }
                 }
             }
         }
     }
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
     Entier* res = new Entier();
     LitteraleCalculable& ref = *res;
     return ref;
@@ -234,16 +246,24 @@ LitteraleCalculable& Entier::quotient(const LitteraleCalculable& l) const{
                         // Entier + Expression
                         LitteraleCalculable& ref = ptExpression->quotient(*this);
                         return ref;
-                   }
-                else{
-                throw CalcException("le type de l'argument 2 n'est pas reconnu");
-                Entier* res = new Entier();
-                LitteraleCalculable& ref = *res;
-                return ref;
-                }
+                   }else{
+                        const Complexe* ptComplexe = dynamic_cast<const Complexe*>(&l);
+                        if (ptComplexe!=0){
+                        // Entier / Complexe
+                        LitteraleCalculable& ref = ptComplexe->quotient(*this);
+                        return ref;
+                        }
+                    }
             }
         }
     }
+
+
+
+    throw CalcException("le type de l'argument 2 n'est pas reconnu");
+    Entier* res = new Entier();
+    LitteraleCalculable& ref = *res;
+    return ref;
 }
 
 //------------- Operation unaires------------
