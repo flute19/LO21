@@ -2,7 +2,6 @@
 #define CONTROLEUR_H
 #include <QString>
 
-#include "include.h"
 #include "litteralemanager.h"
 #include "pile.h"
 #include "expression.h"

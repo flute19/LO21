@@ -12,7 +12,7 @@ void AtomeManager::agrandissementCapacite() {
 }
 
 void AtomeManager::addAtome(QString v, Litterale* l){
-    int i=0;
+    unsigned int i=0;
     while(i<nb && ats[i]->getId()!=v){
         i++;
     }
@@ -21,7 +21,7 @@ void AtomeManager::addAtome(QString v, Litterale* l){
 
     else{
         if(nb==nbMax) agrandissementCapacite();
-        //ats[nb++]= new Atome(v,l);
+        ats[nb++]= new Atome(v,l);
     }
 }
 
@@ -35,9 +35,9 @@ void AtomeManager::removeAtome(Atome& e){
     nb--;
 }
 
-AtomeManager& AtomeManager::getInstance(){
-    if (handler.instance==nullptr) handler.instance=new AtomeManager;
-    return *handler.instance;
+AtomeManager& AtomeManager::getInstanceAtome(){
+    if (!handleratom.instance) handleratom.instance=new AtomeManager;
+    return *handleratom.instance;
 }
 
 AtomeManager::~AtomeManager(){

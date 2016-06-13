@@ -22,7 +22,7 @@ QString Expression::eval() const {
         QStringList listeLitterales = expr.split(" ");
         QStringList::iterator it=listeLitterales.begin();
         Pile *stack= new Pile();
-        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*stack,AtomeManager::getInstance());
+        Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*stack,AtomeManager::getInstanceAtome());
         while (it!=listeLitterales.end()){
             controleur->commande(QString(*it));
             it++;

@@ -7,6 +7,9 @@ void Controleur::commande(const QString& s){
     for(int i = 0; i < saisie.size(); i++){
         QString c = saisie.at(i);
         switch (estUnNombre(c)){
+            case 0:
+                litAff.push(litMng.addLitterale(c));
+            break;
             case 1:
                 litAff.push(litMng.addLitterale(c));
                 break;
@@ -202,7 +205,7 @@ int estUnNombre(const QString s){
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
-   if(s.contains(QRegExp("^(STO)\\s(.+)\\s(^[A-Z])(.*)"))) return 5; //Création d'atome
+   if(s.contains(QRegExp("^(STO)\\s(.+)\\s([A-Z])(.*)"))) return 5; //Création d'atome
    if(s.contains(QRegExp("^\\[(.+)\\]$"))) return 6; // Programme
    if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;//rationnel
 

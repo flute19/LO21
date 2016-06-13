@@ -24,18 +24,19 @@ class AtomeManager {
     //management
     void agrandissementCapacite();
 
-    struct Handler{
+    struct Handlerat{
         AtomeManager* instance;
-        Handler():instance(nullptr){}
+        Handlerat():instance(nullptr){}
         // destructeur appel顠 la fin du programme
-        ~Handler(){ delete instance; }
+        ~Handlerat(){ delete instance; }
     };
-    static Handler handler;
+    static Handlerat handleratom;
 public:
     void addAtome(QString v, Litterale* l);
     void removeAtome(Atome& e);
-    static AtomeManager& getInstance();
-    static void libererInstance();
+    static AtomeManager& getInstanceAtome();
+
+    static void libererInstanceAtome();
 
     class Iterator {
         friend class AtomeManager;
