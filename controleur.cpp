@@ -1,6 +1,9 @@
 #include "controleur.h"
 
 void Controleur::commande(const QString& s){
+    if(estUnNombre(s)==5 || estUnNombre(s)==6){
+
+    }
     //traitement opérande par opérande
     QStringList saisie = s.split(" ");
 
