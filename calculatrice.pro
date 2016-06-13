@@ -34,6 +34,7 @@ SOURCES += \
     expression.cpp \
     complexe.cpp \
     programme.cpp \
-    atome.cpp
+    atome.cpp \
+    atomemanager.cpp
 
 FORMS +=
