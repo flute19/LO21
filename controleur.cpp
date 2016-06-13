@@ -1,9 +1,30 @@
 #include "controleur.h"
 
 void Controleur::commande(const QString& s){
-    if(estUnNombre(s)==5 || estUnNombre(s)==6){
-
+    if(estUnNombre(s)==5 || estUnNombre(s)==6 || estUnNombre(s)==3){
+        if (estUnNombre(s)==6){ //Programme
+            Programme* prog= new Programme(s);
+            QStringList listeLitterales=prog->eval();
+            QStringList::iterator it=listeLitterales.begin();
+            while (it!=listeLitterales.end()){
+                commande(QString(*it));
+                it++;
+            }
+        }
+        else if(estUnNombre(s)==5){ //Création d'atome
+            QStringList str=s.split(' ');
+            if (estUnOperateur(str[2])) litAff.setMessage("Le nom de la variable ne peut pas être un opérateur");
+            else{
+                atMng.addAtome(str[2],&(litMng.addLitterale(str[1])));
+            }
+        }
+        else { // Expression
+            QString expr=s;
+            expr.remove(" ");
+            litAff.push(litMng.addLitterale(expr));
+        }
     }
+    else{
     //traitement opérande par opérande
     QStringList saisie = s.split(" ");
 
@@ -19,30 +40,9 @@ void Controleur::commande(const QString& s){
             case 2:
                 litAff.push(litMng.addLitterale(c));
                 break;
-            case 3:
-                litAff.push(litMng.addLitterale(c));
-                break;
             case 4:
                 litAff.push(litMng.addLitterale(c));
-            case 5:
-            {
-                QStringList str=c.split(' ');
-                if (estUnOperateur(str[2])) litAff.setMessage("Le nom de la variable ne peut pas être un opérateur");
-                else{
-                    atMng.addAtome(str[2],&(litMng.addLitterale(str[1])));
-                }
-            }
                 break;
-            case 6:{
-                Programme* prog= new Programme(c);
-                QStringList listeLitterales=prog->eval();
-                QStringList::iterator it=listeLitterales.begin();
-                while (it!=listeLitterales.end()){
-                    commande(QString(*it));
-                    it++;
-                }
-                break;
-            }
             case -1:
             if (estUnOperateur(c)){
                 int type = getArite(c);
@@ -137,7 +137,7 @@ void Controleur::commande(const QString& s){
 
                     case 1:
                         if (litAff.taille()>=1) {
-
+                            int test=0;
                             Litterale& v1 = litAff.top();
                             LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
@@ -164,27 +164,35 @@ void Controleur::commande(const QString& s){
                                 litAff.push(e);
                             }
                             if (c == "EVAL"){
-                                Expression* exp=dynamic_cast<Expression*>(&val1);
-                                        if (!(exp)) litAff.setMessage("Erreur, Litterale non expression");
-                                        else{
-                                            litAff.pop();
-                                            Litterale& e = litMng.addLitterale(exp->eval());
-                                            litAff.push(e);
-                                        }
-                            }
-                            litMng.removeLitterale(v1);
+                                if(estUnNombre(val1.toString())==3){
+                                    Expression* exp=dynamic_cast<Expression*>(&val1);
+                                        litAff.pop();
+                                        Litterale& e = litMng.addLitterale(exp->eval());
+                                        litAff.push(e);
+                                }
+                                else {
+                                    litAff.setMessage("Erreur, Litterale non expression");
+                                    test=1;
 
+                                }
+                            }
+                            if (test=0)
+                                litMng.removeLitterale(v1);
                         }else{
                             litAff.setMessage("Erreur : pas assez d'arguments");
                         }
                     break;
 
-                    default: break;
+                    default:
+                    litAff.setMessage("Erreur: Commande inconnue");
+                    break;
                    }
             }
-            default: break;
+            else{litAff.setMessage("Erreur: Commande inconnue");}
+            default:
+            break;
         }
-        litAff.setMessage("Erreur: Commande inconnue");
+    }
     }
 }
 
