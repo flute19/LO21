@@ -5,9 +5,11 @@
 #include "calcexception.h"
 #include "item.h"
 #include "calc.h"
+#include "litterale.h"
 #include<QString>
 class Pile;
 class Atome;
+class Litterale;
 
 class AtomeManager {
 

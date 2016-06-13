@@ -12,7 +12,7 @@ class Atome : public Litterale {
     Litterale* value;
 public:
     Atome(QString i="",Litterale* v=nullptr):id(i),value(v){}
-    ~Atome(){}
+    virtual ~Atome(){}
     QString getId() const{return id;}
     Litterale* getValue() const{return value;}
     inline QString toString();

@@ -1,7 +1,7 @@
 #include "controleur.h"
 
 void Controleur::commande(const QString& s){
-    if(estUnNombre(s)==5 || estUnNombre(s)==6 || estUnNombre(s)==3){
+    if(estUnNombre(s)==5 || estUnNombre(s)==6 || estUnNombre(s)==3 || estUnNombre(s)==10){ //Expression, Programme ou Atome
         if (estUnNombre(s)==6){ //Programme
             Programme* prog= new Programme(s);
             QStringList listeLitterales=prog->eval();
@@ -15,14 +15,16 @@ void Controleur::commande(const QString& s){
             QStringList str=s.split(' ');
             if (estUnOperateur(str[2])) litAff.setMessage("Le nom de la variable ne peut pas être un opérateur");
             else{
+                litAff.setMessage("Variable "+str[2]+"->"+str[1]);
                 atMng.addAtome(str[2],&(litMng.addLitterale(str[1])));
             }
         }
-        else { // Expression
+        else if(estUnNombre(s)==3){ // Expression
             QString expr=s;
             expr.remove(" ");
             litAff.push(litMng.addLitterale(expr));
         }
+        else litAff.setMessage("Format invalide");
     }
     else{
     //traitement opérande par opérande
@@ -240,7 +242,8 @@ int estUnNombre(const QString s){
    if(s.toInt(&ok) || s == "0") return 0;
    if(s.toFloat(&ok)) return 1;
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
-   if(s.contains(QRegExp("^(STO)\\s(.+)\\s([A-Z])(.*)"))) return 5; //Création d'atome
+   if(s.contains(QRegExp("^(STO)\\s([a-zA-Z0-9]+)\\s([A-Z])([a-zA-Z0-9]*)$"))) return 5;//Création d'atome
+   if(s.contains(QRegExp("^(STO)"))) return 10;
    if(s.contains(QRegExp("^\\[(.+)\\]$"))) return 6; // Programme
    if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;//rationnel
 
