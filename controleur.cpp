@@ -142,6 +142,21 @@ void Controleur::commande(const QString& s){
                                 Litterale& e = litMng.addLitterale(res.toString());
                                 litAff.push(e);
                             }
+                            if (c == "RE"){
+
+                                litAff.pop();
+                                const LitteraleCalculable& res = val1.partieReel();
+                                Litterale& e = litMng.addLitterale(res.toString());
+                                litAff.push(e);
+                            }
+                            if (c == "IM"){
+
+                                litAff.pop();
+                                const LitteraleCalculable& res = val1.partieIm();
+                                Litterale& e = litMng.addLitterale(res.toString());
+                                //litAff.pop();
+                                litAff.push(e);
+                            }
                             if (c == "EVAL"){
                                 Expression* exp=dynamic_cast<Expression*>(&val1);
                                         if (!(exp)) litAff.setMessage("Erreur, Litterale non expression");
@@ -173,7 +188,7 @@ int getArite(QString c){
             || c == "$"){
         return 2;
     }
-    if (c == "NEG" || c == "EVAL"){
+    if (c == "NEG" || c == "EVAL" || c == "RE" || c == "IM"){
         return 1;
     }
     return 0;
@@ -189,7 +204,8 @@ bool estUnOperateur(const QString s){
     if (s == "MOD") return true;
     if (s == "EVAL") return true;
     if (s == "$") return true;
-
+    if (s == "RE") return true;
+    if (s == "IM") return true;
 
     return false;
 }
