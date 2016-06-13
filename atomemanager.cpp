@@ -21,7 +21,7 @@ void AtomeManager::addAtome(QString v, Litterale* l){
 
     else{
         if(nb==nbMax) agrandissementCapacite();
-        ats[nb++]= new Atome(v,l);
+        //ats[nb++]= new Atome(v,l);
     }
 }
 
