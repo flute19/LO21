@@ -67,10 +67,12 @@ QString Complexe::toString() const {
     s = sre;
     s.append("$");
 
+    bool negatif = false;
     QString sim;
     const Entier* ptEn2 = dynamic_cast<const Entier*>(this->im);
 
-    if(ptEn2 !=0){
+    if(ptEn2 != 0){
+       if(ptEn2->getValue() < 0) {negatif = true; s.append(" -");}
        sim = ptEn2->Entier::toString();
    }else{
         const Reel* ptRe2 = dynamic_cast<const Reel*>(this->im);
@@ -86,7 +88,8 @@ QString Complexe::toString() const {
         }
     }
 
-   s.append(sim);
+    if(negatif)s.append(sim.remove("-"));
+    else s.append(sim);
    return s;
 }
 
