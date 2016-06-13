@@ -51,8 +51,8 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     //---- Operators ----
 
     add = new QPushButton("+",this) ;
-    connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
-   // connect(add, SIGNAL(clicked()),this,SLOT(getNextCommande()));
+ //   connect(add, SIGNAL(clicked()),this,SLOT(affPlus()));
+    connect(add, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     diff = new QPushButton("-",this);
     connect(diff, SIGNAL(clicked()),this,SLOT(getNextCommande()));
     mult = new QPushButton("*",this);
