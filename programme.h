@@ -18,6 +18,7 @@ class Programme : public Litterale{
     QString value;
 public :
     Programme(const QString& s = "") : value(s){}
+    ~Programme(){}
     inline QString toString() const{return value;}
     //operation unaire
     QStringList eval() const;

@@ -17,7 +17,7 @@ public:
     Rationnel(int n=0, int d=1);
     Rationnel(const Entier& n, const Entier& d);
     Rationnel(const LitteraleCalculable& n, const LitteraleCalculable& d);
-    //~Rationnel(){delete(num); delete(den);}
+    ~Rationnel(){}
 
     //data
     const Entier& getNum()const{return *num;}
