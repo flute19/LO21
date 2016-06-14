@@ -19,6 +19,7 @@ QString Expression::eval() const {
         while (it!=listeLitterales.end()){
             controleur->commande(QString(*it));
             controleur->commande("EVAL");
+            i++;
             it++;
         }
         QString res=stack->top().toString();
@@ -42,9 +43,9 @@ QString InfixToPostfix(QString exp){
             S.push(exp[i]);
             }
             else
-                if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1 || estUnNombre(QString(exp[i]))==7 || exp[i]=='.'){
+                if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1 || estUnNombre(QString(exp[i]))==7||exp[i]=='.'){
                     postfix+= exp[i];
-                    if ('a'<exp[i+1].toLatin1()<'z' || 'A'<exp[i+1].toLatin1()<'Z' || 48<exp[i+1].toLatin1()<57 || exp[i+1].toLatin1()==46)
+                    if (!(exp[i+1].isLetter()||estUnNombre(QString(exp[i+1]))==0)||exp[i+1]=='.')
                         postfix+= ' ';
                 }
                 else
@@ -78,13 +79,20 @@ int GetOperatorWeight(char op)
     switch(op)
     {
     case '+':
+        weight = 1;
+        break;
     case '-':
         weight = 1;
+        break;
     case '*':
+        weight = 2;
+        break;
     case '/':
         weight = 2;
+        break;
     case '$':
         weight = 3;
+        break;
     }
     return weight;
 }
@@ -97,7 +105,7 @@ int HasHigherPrecedence(QChar op1, QChar op2)
     // If operators have equal precedence, return true if they are left associative.
     // if operator is left-associative, left one should be given priority.
 
-    return op1Weight > op2Weight ?  true: false;
+    return op1Weight < op2Weight ?  true: false;
 }
 
 

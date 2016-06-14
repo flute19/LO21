@@ -16,7 +16,7 @@ public:
     QString getId() const{return id;}
     Litterale* getValue() const{return value;}
     inline QString toString() const;
-    void setValue(Litterale* l){delete value; value=l;}
+    void setValue(Litterale* l){value=l;}
 };
 inline QString Atome::toString() const{
     return id;
