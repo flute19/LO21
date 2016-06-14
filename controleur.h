@@ -25,6 +25,10 @@ public:
 
 };
 
-bool checkDiv(const LitteraleCalculable& val2);
+//bool checkDiv(const LitteraleCalculable& val2); would be used to check no division by 0 but doesn't work.
+bool estUnOperateur(const QString s);
+int estUnNombre(const QString s);
+int getArite(QString c);
+
 
 #endif // CONTROLEUR_H

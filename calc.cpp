@@ -61,7 +61,7 @@ QCalc::QCalc(QWidget* parent):QWidget (parent)
     connect(quotient, SIGNAL(clicked()),this,SLOT(affDiviser()));
     entree = new QPushButton("go",this);
     connect(entree,SIGNAL(clicked()),this,SLOT(enter()));
-    raz = new QPushButton("RAZ",this);
+    raz = new QPushButton("CLEAR",this);
     connect(raz,SIGNAL(clicked()),this,SLOT(remiseazero()));
     neg = new QPushButton("NEG",this);
     connect(neg,SIGNAL(clicked()),this,SLOT(affNeg()));

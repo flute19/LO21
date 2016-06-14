@@ -1,7 +1,7 @@
 #ifndef LITTERALE_H
 #define LITTERALE_H
 
-#include "include.h"
+#include <QString>
 #include "calcexception.h"
 
 
