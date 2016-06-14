@@ -27,7 +27,7 @@ LitteraleCalculable& Reel::addition(const LitteraleCalculable& l) const{
 
             if (ptRationnel != 0){
                 // Reel + Rationnel
-                Reel* res = new Reel(value + ptRationnel->getNum().getValue()/ptRationnel->getDen().getValue());
+                Reel* res = new Reel(value + double(ptRationnel->getNum().getValue())/double(ptRationnel->getDen().getValue()));
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
@@ -79,7 +79,7 @@ LitteraleCalculable& Reel::diff(const LitteraleCalculable& l) const{
 
             if (ptRationnel != 0){
                 // Reel - Rationnel
-                Reel* res = new Reel(value - ptRationnel->getNum().getValue() / ptRationnel->getDen().getValue());
+                Reel* res = new Reel(value - double(ptRationnel->getNum().getValue()) / double(ptRationnel->getDen().getValue()));
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
@@ -125,7 +125,7 @@ LitteraleCalculable& Reel::mult(const LitteraleCalculable& l) const{
 
             if (ptRationnel != 0){
                 // Reel * Rationnel
-                Reel* res = new Reel(value * ptRationnel->getNum().getValue() / ptRationnel->getDen().getValue());
+                Reel* res = new Reel(value * double(ptRationnel->getNum().getValue()) / double(ptRationnel->getDen().getValue()));
                 LitteraleCalculable& ref= *res;
                 return ref;
             }else{

@@ -2,18 +2,10 @@
 
 
 QString Expression::eval() const {
-    if (value.contains(QRegExp("([a-z]+)"))){
+    if (value.contains(QRegExp("([0-9\\+\\-\\(\\*/\\'][a-z]+)"))){
         return value;
     }
     else{
-
-        // On sépare les éléments de l'expression en enlevant les espaces
-        /*QStringList listeLitterales = value.split(" ");
-        QStringList::iterator it;
-        Pile *pile = new Pile();
-        for (it=listeLitterales.begin();it!=listeLitterales.end();it++){
-           Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*pile);
-           controleur->commande(QString(*it));*/
 
         QString expr=value;
         expr[0]='(';
@@ -21,10 +13,12 @@ QString Expression::eval() const {
         expr=InfixToPostfix(expr);
         QStringList listeLitterales = expr.split(" ");
         QStringList::iterator it=listeLitterales.begin();
+        unsigned int i=0;
         Pile *stack= new Pile();
         Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*stack,AtomeManager::getInstanceAtome());
         while (it!=listeLitterales.end()){
             controleur->commande(QString(*it));
+            controleur->commande("EVAL");
             it++;
         }
         QString res=stack->top().toString();
@@ -48,9 +42,9 @@ QString InfixToPostfix(QString exp){
             S.push(exp[i]);
             }
             else
-                if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1){
+                if (estUnNombre(QString(exp[i]))==0 || estUnNombre(QString(exp[i]))==1 || estUnNombre(QString(exp[i]))==7 || exp[i]=='.'){
                     postfix+= exp[i];
-                    if (!(estUnNombre(QString(exp[i+1]))==0 || estUnNombre(QString(exp[i+1]))==1))
+                    if ('a'<exp[i+1].toLatin1()<'z' || 'A'<exp[i+1].toLatin1()<'Z' || 48<exp[i+1].toLatin1()<57 || exp[i+1].toLatin1()==46)
                         postfix+= ' ';
                 }
                 else
@@ -66,6 +60,7 @@ QString InfixToPostfix(QString exp){
                             }
                             S.pop();
                         }
+
                         //else (throw CalcException("Eval d'une expression non évaluable"));
         }
 

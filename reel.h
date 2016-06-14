@@ -10,13 +10,13 @@ class Rationnel;
 
 
 class Reel:public NonComplexe{
-float value;
+double value;
 public:
     //object management
-    Reel(float x =0.0): value(x){}
+    Reel(double x =0.0): value(x){}
 
     //data
-    float getValue()const{return value;}
+    double getValue()const{return value;}
     inline QString toString() const;
 
     //operations binaires

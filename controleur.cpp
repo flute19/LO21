@@ -15,12 +15,15 @@ void Controleur::commande(const QString& s){
             QStringList str=s.split(' ');
             if (estUnOperateur(str[2])) litAff.setMessage("Le nom de la variable ne peut pas être un opérateur");
             else {
-                if(str[2]==str[1])litAff.setMessage("Un atome ne peut pas se contenir lui même");{
+                if(str[2]==str[1])litAff.setMessage("Un atome ne peut pas se contenir lui même");
+                else {
                     litAff.setMessage("Variable "+str[2]+"->"+str[1]);
                     Litterale* value= &litMng.addLitterale(str[1]);
                     if(atMng.existe(str[2])) atMng.getAtome(str[2]).setValue(value);
                     else atMng.addAtome(str[2], value);
+
                 }
+
             }
         }
         else if(estUnNombre(s)==3){ // Expression
@@ -260,9 +263,9 @@ int estUnNombre(const QString s){
    bool ok = false;
 
    if(s.toInt(&ok) || s == "0") return 0;
-   if(s.toFloat(&ok)) return 1;
-   if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
-   if(s.contains(QRegExp("^(STO)\\s([a-zA-Z0-9]+)\\s([A-Z])([a-zA-Z0-9]*)$"))) return 5;//Création d'atome
+   if(s.toDouble(&ok)) return 1;
+   if(s.contains(QRegExp("^'([^']+)'$"))&& !s.contains(QRegExp("([0-9\\+\\-\\(\\*/\\'][a-z]+)"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
+   if(s.contains(QRegExp("^(STO)\\s([a-zA-Z0-9\\.\\$/]+)\\s([A-Z])([a-zA-Z0-9]*)$"))) return 5;//Création d'atome
    if(s.contains(QRegExp("^([A-Z])([a-zA-Z0-9]*)$")) && !estUnOperateur(s)) return 7; // Il peut s'agir d'un atome
    if(s.contains(QRegExp("^(STO)"))) return 10;
    if(s.contains(QRegExp("^\\[(.+)\\]$"))) return 6; // Programme

@@ -22,7 +22,7 @@ bool ok = true;
         break;
         case 1:
             if (nb == nbMax) agrandissementCapacite();
-            lits[nb++] = new Reel(v.toFloat());
+            lits[nb++] = new Reel(v.toDouble());
             return *lits[nb-1];
         break;
         case 2:
@@ -51,8 +51,8 @@ bool ok = true;
             if(l.at(0).toInt()){
                 re = new Entier(l.at(0).toInt());
             }else{
-                if(l.at(0).toFloat()){
-                    re = new Reel(l.at(0).toFloat());
+                if(l.at(0).toDouble()){
+                    re = new Reel(l.at(0).toDouble());
                 }else{
                     if(l.at(0).contains(QRegExp("([0-9]+)/([0-9]+)"))){
                         QStringList l2 = l.at(0).split("/");
@@ -64,8 +64,8 @@ bool ok = true;
             if(l.at(1).toInt()){
                 im = new Entier(l.at(1).toInt());
             }else{
-                if(l.at(1).toFloat()){
-                    im = new Reel(l.at(1).toFloat());
+                if(l.at(1).toDouble()){
+                    im = new Reel(l.at(1).toDouble());
                 }else{
                     if(l.at(1).contains(QRegExp("([0-9]+)/([0-9]+)"))){
                         QStringList l2= l.at(1) .split("/");
