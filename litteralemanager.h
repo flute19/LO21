@@ -67,32 +67,6 @@ public:
     Iterator getIterator() {
         return Iterator(lits,nb);
     }
-
-    class iterator {
-        Litterale** current;
-        iterator(Litterale** u):current(u){}
-        friend class LitteraleManager;
-    public:
-        iterator():current(0){}
-        Litterale& operator*() const { return **current; }
-        bool operator!=(iterator it) const { return current!=it.current; }
-        iterator& operator++(){ ++current; return *this; }
-    };
-    iterator begin() { return iterator(lits); }
-    iterator end() { return iterator(lits+nb); }
-
-    class const_iterator {
-        Litterale** current;
-        const_iterator(Litterale** u):current(u){}
-        friend class LitteraleManager;
-    public:
-        const_iterator():current(0){}
-        Litterale& operator*() const { return **current; }
-        bool operator!=(const_iterator it) const { return current!=it.current; }
-        const_iterator& operator++(){ ++current; return *this; }
-    };
-    const_iterator begin() const { return const_iterator(lits); }
-    const_iterator end() const { return const_iterator(lits+nb); }
 };
 
 

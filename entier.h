@@ -20,6 +20,7 @@ public:
 
     //object management
     Entier(int x=0):value(x){}
+    ~Entier(){};
 
     //data
     int getValue()const{return value;}

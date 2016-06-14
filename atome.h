@@ -1,7 +1,7 @@
 #ifndef ATOME_H
 #define ATOME_H
 
-#include<QString>
+#include <QString>
 #include "litterale.h"
 #include "litteralemanager.h"
 

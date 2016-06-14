@@ -10,6 +10,7 @@ class Complexe: public LitteraleCalculable{
 public:
     //object management
     Complexe(const NonComplexe& l1, const NonComplexe& l2);
+    ~Complexe(){}
 
     //data
     const NonComplexe& getRe()const{return *re;}

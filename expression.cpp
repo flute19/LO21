@@ -19,7 +19,6 @@ QString Expression::eval() const {
         while (it!=listeLitterales.end()){
             controleur->commande(QString(*it));
             controleur->commande("EVAL");
-            i++;
             it++;
         }
         QString res=stack->top().toString();

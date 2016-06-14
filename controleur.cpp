@@ -55,7 +55,7 @@ void Controleur::commande(const QString& s){
                 break;
             case 7:
                 if(atMng.existe(c))
-                litAff.push(atMng.getAtome(c));
+                    litAff.push(atMng.getAtome(c));
                 else
                     litAff.setMessage("Tentative d'ajout d'un Atome non déclaré dans la pile");
                 break;
@@ -194,12 +194,14 @@ void Controleur::commande(const QString& s){
                                         litAff.pop();
                                         Litterale& e = litMng.addLitterale(exp->eval());
                                         litAff.push(e);
+                                        test=1;
                                 }
                                 else {
                                     if(estUnNombre(v1.toString())==7){
                                         Atome* at=dynamic_cast<Atome*>(&v1);
                                         litAff.pop();
                                         litAff.push(*at->getValue());
+                                        test=1;
                                     }
                                     else{
                                         litAff.setMessage("Erreur, Litterale non expression ni atome");
