@@ -65,7 +65,7 @@ QString Complexe::toString() const {
         }
     }
     s = sre;
-    s.append("\\$");
+    s.append("$");
 
     //bool negatif = false;
     QString sim;

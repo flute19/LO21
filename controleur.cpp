@@ -207,7 +207,7 @@ void Controleur::commande(const QString& s){
                                     }
                                 }
                             }
-                            if (test=0)
+                            if (test == 0)
                                 litMng.removeLitterale(v1);
                         }else{
                             litAff.setMessage("Erreur : pas assez d'arguments");

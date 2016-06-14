@@ -13,7 +13,7 @@ QString Expression::eval() const {
         expr=InfixToPostfix(expr);
         QStringList listeLitterales = expr.split(" ");
         QStringList::iterator it=listeLitterales.begin();
-        unsigned int i=0;
+
         Pile *stack= new Pile();
         Controleur *controleur = new Controleur(LitteraleManager::getInstance(),*stack,AtomeManager::getInstanceAtome());
         while (it!=listeLitterales.end()){

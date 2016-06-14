@@ -20,7 +20,7 @@ class Controleur {
     AtomeManager& atMng;
     Pile& litAff;
 public:
-    Controleur(LitteraleManager& m, Pile& v, AtomeManager& a):litMng(m), litAff(v), atMng(a){}
+    Controleur(LitteraleManager& m, Pile& v, AtomeManager& a):litMng(m), atMng(a),litAff(v){}
     void commande(const QString& c);
 
 };
