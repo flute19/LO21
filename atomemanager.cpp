@@ -2,6 +2,25 @@
 #include "expression.h"
 #include <QStringList>
 
+Atome& AtomeManager::getAtome(QString s) const{
+    unsigned int i=0;
+    while (i<nb && ats[i]->getId()!=s){
+        i++;
+    }
+    if(i!=nb)
+        return *ats[i];
+}
+
+bool AtomeManager::existe(QString s) const{
+    unsigned int i=0;
+    while (i<nb && ats[i]->getId()!=s){
+        i++;
+    }
+    if(i!=nb)
+        return true;
+    return false;
+}
+
 void AtomeManager::agrandissementCapacite() {
     Atome** newtab=new Atome*[(nbMax+1)*2];
     for(unsigned int i=0; i<nb; i++) newtab[i]=ats[i];
@@ -16,12 +35,12 @@ void AtomeManager::addAtome(QString v, Litterale* l){
     while(i<nb && ats[i]->getId()!=v){
         i++;
     }
-    if (ats[i]->getId()==v)
+    if (i!=nb)
         ats[i]->setValue(l);
 
     else{
         if(nb==nbMax) agrandissementCapacite();
-        //ats[nb++]= new Atome(v,l);
+        ats[nb++]= new Atome(v,l);
     }
 }
 

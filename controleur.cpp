@@ -14,9 +14,13 @@ void Controleur::commande(const QString& s){
         else if(estUnNombre(s)==5){ //Création d'atome
             QStringList str=s.split(' ');
             if (estUnOperateur(str[2])) litAff.setMessage("Le nom de la variable ne peut pas être un opérateur");
-            else{
-                litAff.setMessage("Variable "+str[2]+"->"+str[1]);
-                atMng.addAtome(str[2],&(litMng.addLitterale(str[1])));
+            else {
+                if(str[2]==str[1])litAff.setMessage("Un atome ne peut pas se contenir lui même");{
+                    litAff.setMessage("Variable "+str[2]+"->"+str[1]);
+                    Litterale* value= &litMng.addLitterale(str[1]);
+                    if(atMng.existe(str[2])) atMng.getAtome(str[2]).setValue(value);
+                    else atMng.addAtome(str[2], value);
+                }
             }
         }
         else if(estUnNombre(s)==3){ // Expression
@@ -45,6 +49,12 @@ void Controleur::commande(const QString& s){
                 break;
             case 4:
                 litAff.push(litMng.addLitterale(c));
+                break;
+            case 7:
+                if(atMng.existe(c))
+                litAff.push(atMng.getAtome(c));
+                else
+                    litAff.setMessage("Tentative d'ajout d'un Atome non déclaré dans la pile");
                 break;
             case -1:
             if (estUnOperateur(c)){
@@ -149,10 +159,10 @@ void Controleur::commande(const QString& s){
                         if (litAff.taille()>=1) {
                             int test=0;
                             Litterale& v1 = litAff.top();
-                            LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
 
                             if (c == "NEG"){
 
+                                LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
                                 litAff.pop();
                                 LitteraleCalculable& res = val1.neg();
                                 Litterale& e = litMng.addLitterale(res.toString());
@@ -160,6 +170,7 @@ void Controleur::commande(const QString& s){
                             }
                             if (c == "RE"){
 
+                                LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
                                 litAff.pop();
                                 const LitteraleCalculable& res = val1.partieReel();
                                 Litterale& e = litMng.addLitterale(res.toString());
@@ -167,6 +178,7 @@ void Controleur::commande(const QString& s){
                             }
                             if (c == "IM"){
 
+                                LitteraleCalculable& val1 = dynamic_cast<LitteraleCalculable&>(v1);
                                 litAff.pop();
                                 const LitteraleCalculable& res = val1.partieIm();
                                 Litterale& e = litMng.addLitterale(res.toString());
@@ -174,16 +186,22 @@ void Controleur::commande(const QString& s){
                                 litAff.push(e);
                             }
                             if (c == "EVAL"){
-                                if(estUnNombre(val1.toString())==3){
-                                    Expression* exp=dynamic_cast<Expression*>(&val1);
+                                if(estUnNombre(v1.toString())==3){
+                                    Expression* exp=dynamic_cast<Expression*>(&v1);
                                         litAff.pop();
                                         Litterale& e = litMng.addLitterale(exp->eval());
                                         litAff.push(e);
                                 }
                                 else {
-                                    litAff.setMessage("Erreur, Litterale non expression");
-                                    test=1;
-
+                                    if(estUnNombre(v1.toString())==7){
+                                        Atome* at=dynamic_cast<Atome*>(&v1);
+                                        litAff.pop();
+                                        litAff.push(*at->getValue());
+                                    }
+                                    else{
+                                        litAff.setMessage("Erreur, Litterale non expression ni atome");
+                                        test=1;
+                                    }
                                 }
                             }
                             if (test=0)
@@ -197,7 +215,6 @@ void Controleur::commande(const QString& s){
                     litAff.setMessage("Erreur: Commande inconnue");
                     break;
                    }
-                litAff.setMessage("Erreur: Commande inconnue");
             }
             else{litAff.setMessage("Erreur: Commande inconnue");}
             default:
@@ -246,6 +263,7 @@ int estUnNombre(const QString s){
    if(s.toFloat(&ok)) return 1;
    if(s.contains(QRegExp("^'([^']+)'$"))) return 3; //Expression au dessus de 2 car '4/3' évalué comme un rationnel
    if(s.contains(QRegExp("^(STO)\\s([a-zA-Z0-9]+)\\s([A-Z])([a-zA-Z0-9]*)$"))) return 5;//Création d'atome
+   if(s.contains(QRegExp("^([A-Z])([a-zA-Z0-9]*)$")) && !estUnOperateur(s)) return 7; // Il peut s'agir d'un atome
    if(s.contains(QRegExp("^(STO)"))) return 10;
    if(s.contains(QRegExp("^\\[(.+)\\]$"))) return 6; // Programme
    if(s.contains(QRegExp("([0-9]+)/([0-9]+)"))) return 2;//rationnel

@@ -2,7 +2,7 @@
 
 
 QString Expression::eval() const {
-    if (value.contains(QRegExp("([a-zA-Z]+)"))){
+    if (value.contains(QRegExp("([a-z]+)"))){
         return value;
     }
     else{

@@ -10,7 +10,7 @@ class Litterale{
 public:
     void affiche();
     Litterale(){}
-    ~Litterale(){}
+    virtual ~Litterale(){}
     virtual QString toString() const=0;
 };
 

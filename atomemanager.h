@@ -34,6 +34,8 @@ class AtomeManager {
     };
     static Handlerat handleratom;
 public:
+    Atome& getAtome(QString s) const;
+    bool existe(QString s) const;
     void addAtome(QString v, Litterale* l);
     void removeAtome(Atome& e);
     static AtomeManager& getInstanceAtome();
