@@ -7,10 +7,12 @@
 #include "calc.h"
 #include "litterale.h"
 #include<QString>
+
 class Pile;
 class Atome;
 class Litterale;
 
+//---------------Class definition --------------
 class AtomeManager {
 
     Atome** ats;

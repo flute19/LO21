@@ -7,8 +7,12 @@ Atome& AtomeManager::getAtome(QString s) const{
     while (i<nb && ats[i]->getId()!=s){
         i++;
     }
-    if(i!=nb)
+    if(i!= nb)
         return *ats[i];
+    Entier* e = new Entier();
+    Atome* res = new Atome("erreurInitialisation", e);
+    Atome& ref = *res;
+    return ref;
 }
 
 bool AtomeManager::existe(QString s) const{
