@@ -35,7 +35,7 @@ LitteraleCalculable& Entier::addition(const LitteraleCalculable& l) const{
             const Reel* ptReel = dynamic_cast<const Reel*>(&l);
             if (ptReel!=0){
                 // Entier + Reel
-                Reel* res= new Reel(value+ptReel->getValue());
+                Reel* res= new Reel(double(value)+ptReel->getValue());
                 LitteraleCalculable& ref = *res;
                 return ref;
             }else{
