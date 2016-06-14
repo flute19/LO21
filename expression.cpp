@@ -161,8 +161,9 @@ LitteraleCalculable& Expression::quotient(const LitteraleCalculable& l)const{
 //------------- Operateur unaires ----------
 //--- neg ---
 LitteraleCalculable& Expression::oppose() const{
-    QString s = "-("+value;
-    s.append(")");
+    QString s = value;
+    s.remove("'");
+    s="'-("+s+")'";
 
     Expression* res = new Expression(s);
     LitteraleCalculable& ref = *res;
